@@ -1,0 +1,47 @@
+---
+title: "TareaEstDescriptiva"
+author: "Natalia Ramirez"
+date: "8/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
+summary(cars)
+
+#tabla datos agrupados
+library(fdth)
+tda = fdt(iris$Sepal.Length, breaks = "Sturges")
+tda
+#histograma
+plot(tda, type = "fh", main="histograma de frecuencias absolutas", xlab = "Sepal.Lenght")
+#poligono de frecuencias
+plot(tda, type = "fp", main = "poligono de frecuencias absolutas", xlab = "Sepal.Lenght")
+#poligono de frecuencias acumuladas en porcentaje / ojiva
+plot(tda, type = "cfpp", main= "poligono frec acc $", xlab = "sepal.lenght")
+#diagrama de cajas
+boxplot(iris$Sepal.Length ~ iris$Species, main="diagrama de caja de sepal.lenght por especie")
+#rango itercuartil
+iqr = IQR(iris$Sepal.Length)
+iqr
+#cuartiles
+quantile(iris$Sepal.Length, probs = c(0,0.05,0.25,0.50,0.75,0.95,1))
+#matriz de correlacion
+library(corrplot)
+matriz = cor(iris[,c(1,2,3,4)])
+corrplot.mixed(matriz,lower="circle",upper="number",cl.ratio=0.9,number.cex=1.5)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+

@@ -1,0 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelo.excepciones;
+
+import java.io.IOException;
+
+/**
+ *
+ * @author rociomera
+ */
+public class ProblemasConArchivoException extends IOException{
+    private String nombre_archivo;
+    public ProblemasConArchivoException(String nombre_archivo, String msg){
+        super(msg);
+        this.nombre_archivo = nombre_archivo;
+    }
+    public String getNombre_archivo(){
+        return nombre_archivo;
+    }
+}

@@ -1,0 +1,168 @@
+---
+title: "Deber 2"
+author: "Natalia Ramirez"
+date: "28/5/2021"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r DEBER 2, echo=TRUE, message=TRUE}
+library(readxl)
+
+dataClase<- read_excel("5TO SEMESTRE/ESTADISTICA/Copy of Datos para el deber 2- Estadística Descriptiva Par 7 2021-1(1-42).xlsx")
+
+#Elaboración de gráficos de barras
+library(modeest)
+absol_genero = table(dataClase$Género)
+
+moda_gen = mlv(dataClase$Género)
+#moda genero
+moda_gen
+
+barplot(table(dataClase$Género), main="Género de estudiantes de estadistica", xlab="Género")
+
+
+#Calculo de medidas de tendencia central para variables cuantitativas
+media_edad = mean(dataClase$Edad)
+media_peso = mean(dataClase$`Peso (lb)`)
+media_estatura = mean(dataClase$`Estatura (cm)`)
+media_materias = mean(dataClase$`Materias AP`)
+median_edad = median(dataClase$Edad)
+median_peso = median(dataClase$`Peso (lb)`)
+median_estatura = median(dataClase$`Estatura (cm)`)
+median_materias = median(dataClase$`Materias AP`)
+moda_edad = mlv(dataClase$Edad, method ="mfv")
+moda_peso = mlv(dataClase$`Peso (lb)`, method ="mfv")
+moda_estatura = mlv(dataClase$`Estatura (cm)`, method ="mfv")
+moda_materias = mlv(dataClase$`Materias AP`, method ="mfv")
+
+#Medidas para Edad
+media_edad #media
+median_edad #mediana
+moda_edad #moda
+var(dataClase$Edad) #varianza
+sd(dataClase$Edad) #desviacion estandar
+#Medidas para Peso
+media_peso #media
+median_peso #mediana
+var(dataClase$`Peso (lb)`) #varianza
+sd(dataClase$`Peso (lb)`) #desviacion estandar
+moda_peso #moda
+#Medidas para Estatura
+media_estatura #media
+median_estatura #mediana
+var(dataClase$`Estatura (cm)`) #varianza
+sd(dataClase$`Estatura (cm)`) #desviacion estandar
+moda_estatura #moda
+#Medidas para Materias Aprobadas
+media_materias #media
+median_materias #mediana
+moda_materias #moda
+var(dataClase$`Materias AP`) #varianza
+sd(dataClase$`Materias AP`) #desviacion estandar
+
+#Elaboración de histogramas, polígonos de frecuencia y ojivas
+library(fdth)
+k_edad = nclass.Sturges(dataClase$Edad)
+k_peso = nclass.Sturges(dataClase$`Peso (lb)`)
+k_estatura = nclass.Sturges(dataClase$`Estatura (cm)`)
+k_materias = nclass.Sturges(dataClase$`Materias AP`)
+
+#TABLAS DE FRECUENCIA
+frec_edad = fdt(dataClase$Edad, breaks = "Sturges", right = F)
+frec_edad
+frec_peso = fdt(dataClase$`Peso (lb)`, breaks = "Sturges", right = F)
+frec_peso
+frec_estatura = fdt(dataClase$`Estatura (cm)`, breaks = "Sturges", right = F)
+frec_estatura
+frec_materias = fdt(dataClase$`Materias AP`, breaks = "Sturges", right = F)
+frec_materias
+
+#HISTOGRAMAS - FRECUENCIA ABSOLUTA Y RELATIVA
+hist(dataClase$Edad, breaks = "Sturges")
+hist(dataClase$`Peso (lb)`, breaks = "Sturges")
+hist(dataClase$`Estatura (cm)`, breaks = "Sturges")
+hist(dataClase$`Materias AP`, breaks = "Sturges")
+
+hist(dataClase$Edad, breaks = "Sturges", freq = FALSE)
+hist(dataClase$`Peso (lb)`, breaks = "Sturges", freq = FALSE)
+hist(dataClase$`Estatura (cm)`, breaks = "Sturges", freq = FALSE)
+hist(dataClase$`Materias AP`, breaks = "Sturges", freq = FALSE)
+
+#POLIGONOS DE FRECUENCIA ABSOLUTA Y RELATIVA
+tabla_edad= hist(dataClase$Edad, breaks="Sturges", plot=F)
+plot(tabla_edad$mids,tabla_edad$counts, main="Poligono de frecuencia absoluta - Edad", xlab ="Marca de clase")
+lines(tabla_edad$mids,tabla_edad$counts, type="l")
+
+tabla_peso= hist(dataClase$`Peso (lb)`, breaks="Sturges", plot=F)
+plot(tabla_peso$mids,tabla_peso$counts, main="Poligono de frecuencia absoluta - Peso", xlab ="Marca de clase")
+lines(tabla_peso$mids,tabla_peso$counts, type="l")
+
+tabla_estatura= hist(dataClase$`Estatura (cm)`, breaks="Sturges", plot=F)
+plot(tabla_estatura$mids,tabla_estatura$counts, main="Poligono de frecuencia absoluta - Estatura", xlab ="Marca de clase")
+lines(tabla_estatura$mids,tabla_estatura$counts, type="l")
+
+tabla_materias= hist(dataClase$`Materias AP`, breaks="Sturges", plot=F)
+plot(tabla_materias$mids,tabla_materias$counts, main="Poligono de frecuencia absoluta - Materias Aprobadas", xlab ="Marca de clase")
+lines(tabla_materias$mids,tabla_materias$counts, type="l")
+
+plot(tabla_edad$mids,tabla_edad$counts/sum(tabla_edad$counts), main="Poligono de frecuencia relativa - Edad", xlab ="Marca de clase")
+lines(tabla_edad$mids,tabla_edad$counts/sum(tabla_edad$counts), type="l")
+
+plot(tabla_peso$mids,tabla_peso$counts/sum(tabla_peso$counts), main="Poligono de frecuencia relativa - Peso", xlab ="Marca de clase")
+lines(tabla_peso$mids,tabla_peso$counts/sum(tabla_peso$counts), type="l")
+
+plot(tabla_estatura$mids,tabla_estatura$counts/sum(tabla_estatura$counts), main="Poligono de frecuencia relativa - Estatura", xlab ="Marca de clase")
+lines(tabla_estatura$mids,tabla_estatura$counts/sum(tabla_estatura$counts), type="l")
+
+plot(tabla_materias$mids,tabla_materias$counts/sum(tabla_materias$counts), main="Poligono de frecuencia relativa - Materias Aprobadas", xlab ="Marca de clase")
+lines(tabla_materias$mids,tabla_materias$counts/sum(tabla_materias$counts), type="l")
+
+#OJIVAS DE FRECUENCIA ABSOLUTA Y RELATIVA
+plot(tabla_edad$mids,cumsum(tabla_edad$counts), main="Ojiva de frecuencia absoluta - Edad", xlab ="Marca de clase")
+lines(tabla_edad$mids,cumsum(tabla_edad$counts), type="l")
+
+plot(tabla_peso$mids,cumsum(tabla_peso$counts), main="Ojiva de frecuencia absoluta - Peso", xlab ="Marca de clase")
+lines(tabla_peso$mids,cumsum(tabla_peso$counts), type="l")
+
+plot(tabla_estatura$mids,cumsum(tabla_estatura$counts), main="Ojiva de frecuencia absoluta - Estatura", xlab ="Marca de clase")
+lines(tabla_estatura$mids,cumsum(tabla_estatura$counts), type="l")
+
+plot(tabla_materias$mids,cumsum(tabla_materias$counts), main="Ojiva de frecuencia absoluta - Materias Aprobadas", xlab ="Marca de clase")
+lines(tabla_materias$mids,cumsum(tabla_materias$counts), type="l")
+
+plot(tabla_edad$mids,cumsum(tabla_edad$counts)/sum(tabla_edad$counts), main="Ojiva de frecuencia relativa - Edad", xlab ="Marca de clase")
+lines(tabla_edad$mids,cumsum(tabla_edad$counts)/sum(tabla_edad$counts), type="l")
+
+plot(tabla_peso$mids,cumsum(tabla_peso$counts)/sum(tabla_peso$counts), main="Ojiva de frecuencia relativa - Peso", xlab ="Marca de clase")
+lines(tabla_peso$mids,cumsum(tabla_peso$counts)/sum(tabla_peso$counts), type="l")
+
+plot(tabla_estatura$mids,cumsum(tabla_estatura$counts)/sum(tabla_estatura$counts), main="Ojiva de frecuencia relativa - Estatura", xlab ="Marca de clase")
+lines(tabla_estatura$mids,cumsum(tabla_estatura$counts)/sum(tabla_estatura$counts), type="l")
+
+plot(tabla_materias$mids,cumsum(tabla_materias$counts)/sum(tabla_materias$counts), main="Ojiva de frecuencia relativa - Materias Áprobadas", xlab ="Marca de clase")
+lines(tabla_materias$mids,cumsum(tabla_materias$counts)/sum(tabla_materias$counts), type="l")
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

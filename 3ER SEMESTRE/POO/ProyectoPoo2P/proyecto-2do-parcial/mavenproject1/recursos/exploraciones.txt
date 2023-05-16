@@ -1,0 +1,13 @@
+Baker,2019-09-04,magnetita/goethita/esmectita/jarosita/silicio/yeso/magnesio/hematita
+Baker,2020-10-04,
+Baker,2020-05-04,
+Baker,2020-03-04,cuarzo/silicio/esmectita/jarosita
+Baker,2020-02-04,opalina/silicio/cuarzo
+Baker,2019-08-04,
+Baker,2019-09-04,
+Baker,2020-09-04,
+Potanina,2020-09-04,hematita/silicio
+Potanina,2020-09-04,esmectita/yeso/hierro/magnetita/goethita/opalina/cuarzo/silicio/hematita
+Potanina,2020-06-04,goethita/opalina
+Potanina,2020-09-04,hierro/esmectita/hematita/jarosita/goethita/silicio
+Potanina,2020-09-04,magnetita/hematita/magnesio/goethita/opalina

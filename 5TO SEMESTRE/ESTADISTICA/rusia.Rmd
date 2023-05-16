@@ -1,0 +1,88 @@
+---
+title: "Parte Descriptiva Rusia"
+author: "Natalia Ramirez"
+date: "22/8/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r Rusia}
+meses<-c("ENE 2020","FEB 2020","MAR 2020","ABR 2020","MAY 2020","JUN 2020","JUL 2020","AGO 2020","SEP 2020","OCT 2020","NOV 2020","DIC 2020","ENE 2021","FEB 2021","MAR 2021","ABR 2021","MAY 2021","JUN 2021","JUL 2021")
+año<-c("2020", "2021")
+confirmados<-c(2,0,2335,104161,299345,241086,191532,153941,178397,435468,669669,851411,681001,390052,295834,256521,262757,436082,735655)
+recuperados<-c(0,2,119,11498,160264,240090,225244,170122,147449,253652,555053,764229,736889,504414,349684,258795,252957,311822,597504)
+muertes<-c(0,0,17,1056,3620,4613,4633,3189,3502,7157,11704,16780,15808,12621,12519,11071,11174,13509,22979)
+
+rusia<-data.frame(Meses=meses,Conf=confirmados,Rec=recuperados,Muertes=muertes)
+rusia
+
+library(fdth)
+library(corrplot)
+
+#************************************* CONFIRMADOS ***********************************
+
+tda_conf = fdt(rusia$Conf, breaks = "Sturges")
+tda_conf
+#histograma
+plot(tda_conf, type = "fh", main="histograma de Casos confirmados covid-19 en Rusia", xlab = "Casos confirmados")
+#diagrama de cajas
+boxplot(rusia$Conf, main="Diagrama de caja de Casos confirmados covid-19 en Rusia")
+#cuartiles
+quantile(rusia$Conf, probs = c(0,0.05,0.25,0.50,0.75,0.95,1))
+#medidas
+summary(rusia$Conf)
+var_conf<-var(rusia$Conf)
+var_conf
+desv_conf<-sqrt(var_conf)
+desv_conf
+#grafico de barras
+barplot(height = rusia$Conf,names.arg =  rusia$Meses, las = 3, main = "Casos confirmados covid-19 en Rusia por mes", ylab = "Casos confirmados")
+
+#************************************* RECUPERADOS ***********************************
+
+tda_rec = fdt(rusia$Rec, breaks = "Sturges")
+tda_rec
+#histograma
+plot(tda_rec, type = "fh", main="Histograma de Casos recuperados de covid-19 en Rusia", xlab = "Casos recuperados")
+#diagrama de cajas
+boxplot(rusia$Rec, main="Diagrama de caja de Casos recuperados en Rusia")
+#cuartiles
+quantile(rusia$Rec, probs = c(0,0.05,0.25,0.50,0.75,0.95,1))
+#medidas
+summary(rusia$Rec)
+var_rec<-var(rusia$Rec)
+var_rec
+desv_rec<-sqrt(var_rec)
+desv_rec
+#grafico de barras
+barplot(height = rusia$Rec,names.arg =  rusia$Meses, las = 3, main = "Casos recuperados covid-19 en Rusia por mes", ylab = "Casos recuperados")
+
+#************************************* MUERTES ***********************************
+
+tda_muertes = fdt(rusia$Muertes, breaks = "Sturges")
+tda_muertes
+#histograma
+plot(tda_muertes, type = "fh", main="Histograma de Muertes en Rusia por covid-19", xlab = "Muertes")
+#diagrama de cajas
+boxplot(rusia$Rec, main="diagrama de caja de muertes en Rusia por covid-19")
+#cuartiles
+quantile(rusia$Rec, probs = c(0,0.05,0.25,0.50,0.75,0.95,1))
+#medidas
+summary(rusia$Rec)
+var_muertes<-var(rusia$Rec)
+var_muertes
+desv_muertes<-sqrt(var_muertes)
+desv_muertes
+#grafico de barras
+barplot(height = rusia$Conf,names.arg =  rusia$Meses, las = 3, main = "Muertes por covid-19 en Rusia por mes", ylab = "Muertes")
+
+
+#matrices de correlación
+cor(rusia[2:4])
+
+```
+
+
+

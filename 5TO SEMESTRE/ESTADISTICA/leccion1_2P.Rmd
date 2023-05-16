@@ -1,0 +1,41 @@
+---
+title: "Leccion 1 2do Parcial"
+author: "Natalia Ramirez"
+date: "4/8/2021"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+
+```{r cars}
+#Pregunta 3
+n = 121
+media = 96
+desv = 14
+w = qnorm(0.025, lower.tail = F)
+error = desv/sqrt(n)
+margen = w*error
+
+sup1 = media + margen
+inf1 = media - margen
+
+sup1
+inf1
+
+#pregunta 4
+n2 = 50
+alfa = 10
+beta = 2
+
+media = alfa*beta
+desv2= sqrt(alfa*beta*beta)
+
+z1= (18-media)/(desv2/sqrt(n2))
+z2 = (21-media)/(desv2/sqrt(n2))
+
+pnorm(z1)
+pnorm(z2)
+```
+
+

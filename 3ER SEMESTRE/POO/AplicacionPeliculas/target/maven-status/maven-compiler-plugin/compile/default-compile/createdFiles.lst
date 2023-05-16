@@ -1,0 +1,8 @@
+com\mycompany\aplicacionpeliculas\modelo\Pelicula.class
+com\mycompany\aplicacionpeliculas\data\PeliculaData.class
+module-info.class
+com\mycompany\aplicacionpeliculas\data\GeneroData.class
+com\mycompany\aplicacionpeliculas\Principal.class
+com\mycompany\aplicacionpeliculas\modelo\Genero.class
+com\mycompany\aplicacionpeliculas\data\Constants.class
+com\mycompany\aplicacionpeliculas\VistaPeliculas.class

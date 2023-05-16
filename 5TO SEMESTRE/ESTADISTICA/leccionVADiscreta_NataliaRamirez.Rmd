@@ -1,0 +1,18 @@
+---
+title: "leccionR_NataliaRamirez"
+author: "Natalia Ramirez"
+date: "30/6/2021"
+output: pdf_document
+---
+
+
+```{r cars}
+#pregunta 5
+dnbinom(x=7-3, size= 3, prob=0.7)
+#pregunta 6
+x=2:10
+sum(dbinom(x,size=10,prob=0.70))
+#pregunta 7
+x=18:20
+sum(dbinom(x,size=20,prob=0.75))
+```

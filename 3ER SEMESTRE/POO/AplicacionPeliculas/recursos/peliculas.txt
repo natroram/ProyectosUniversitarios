@@ -1,0 +1,8 @@
+Mad Max; 0001; 2015; 4; George Miller; mad_max_2015.jpeg
+Intensamente; 0002; 2015; 3; Pete Docker; intensamente_2015.jpeg
+Star War; 0003; 2015; 5; J J Abrams; starwars_2015.jpeg 
+El marciano; 0003; 2015; 4; Riddley Scott; marciano_2015.jpeg
+La llegada; 0003;  2016; 4; Denis Villenueva; llegada_2016.jpeg
+Kubo; 0004; 2016; 3; Travis Knight; kubo_2016.jpeg
+la la land; 0002; 2016; 4; Damien Chazelle; lalaland_2016.jpeg
+zootopia; 0004; 2016; 4; Byron Howard; zootopia_2016.jpeg

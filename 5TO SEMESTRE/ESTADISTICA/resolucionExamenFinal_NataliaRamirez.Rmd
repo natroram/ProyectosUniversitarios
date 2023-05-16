@@ -1,0 +1,96 @@
+---
+title: "Resolución Examen Final"
+author: "Natalia Ramírez"
+date: "2/9/2021"
+output: word_document
+---
+
+
+
+```{r cars}
+
+#pregunta 3
+n <- 35
+#muestra 1: vitamina C
+#muestra 2: ningun complemento
+#Ho: media1 = media2 ; media1 - media2 = 0
+#Ha: media1 < media2 ; media1 - media2 < 0
+
+media1<- 9.9
+desv1<-1.2
+media2<-8.9
+desv2<-2.9
+
+#estadistico de prueba
+z <- (media1-media2)/(sqrt((desv1/n)+(desv2/n)))
+z
+valor_p <- round(pnorm(z),3)
+valor_p
+
+#p > 0.05. No se rechaza Ho. No existe evidencia estadística para inidcar que el uso de la vitamina C reduce el tiempo de recuperación
+
+#pregunta 4
+x = 40
+n = 100
+psomb <- x/n
+
+confianza <- 0.9
+alfa <- 0.1
+
+w<- qnorm(alfa/2, lower.tail = F)
+w
+
+error<- w*(sqrt(psomb*(1-psomb)/n))
+error
+
+#error debe ser < 0.02
+
+#despejando n de la ecuación
+
+a<- ((sqrt(psomb*(1-psomb)))*w)/0.02
+a
+n_resultado <- a*a
+n_resultado
+
+#se necesita lanzar la moneda 1624 veces
+
+#pregunta 5
+
+#Ho: fuente conocimiento y lugar compra son independientes
+#Ha: fuente conocimiento y lugar compra no son independientes
+
+lugar_compra<- c("almacen", "comisariato", "online")
+fuente<-c("amigo", "redes sociales", "television")
+almacen<-c(12,11,15)
+comisariato<-c(8,23,17)
+online<-c(10,8,25)
+
+tabla.cont = cbind(almacen,comisariato,online)
+colnames(tabla.cont)<-lugar_compra
+rownames(tabla.cont)<-fuente
+
+tabla.cont
+
+a<-chisq.test(tabla.cont)
+a
+
+#p < 0.05 - Se rechaza Ho. Existe dependencia entre la fuente de conocimiento y lugar de compra
+
+#pregunta 6
+n<-33
+sxy <- -453
+sxx <- 772
+syy<-16296.91
+sum_y<-1380
+ybarra<-sum_y/n
+xbarra <- 16
+b1<- sxy/sxx
+b1
+bo<- ybarra - (b1*xbarra)
+bo
+
+r<-sxy/(sxx*syy)
+rsq<-9220/21627
+rsq
+```
+

@@ -1,0 +1,4 @@
+accion;0001
+comedia;0002
+ciencia ficcion;0003
+animacion;0004

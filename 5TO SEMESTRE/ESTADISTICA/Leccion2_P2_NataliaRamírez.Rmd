@@ -1,0 +1,55 @@
+---
+title: "Lección 2 - Parcial 2"
+author: "Natalia Ramírez"
+date: "23/8/2021"
+output: word_document
+---
+
+
+```{r cars}
+#Pregunta 1 
+#Prueba hipotesis para la proporcion
+#Ho: p = 0.3
+#Ha: p < 0.3
+n = 214
+x = 86
+psomb = x/n
+#est.prueba
+z = sqrt(n)*((psomb-0.3)/sqrt(0.3*(1-0.3)))
+z
+#R.R -  se asume que alfa = 0.05
+qnorm(0.05, lower.tail = F)
+qnorm(0.05)
+
+#Se rechaza Ho - Existe evidencia estadística de que menos de 0.3 de los espectadores ven el programa
+
+#Pregunta 2
+
+n=54
+desv=1.27
+xbarra=5.75
+media=6
+
+#Ho: u=6
+#Ha: u<6
+
+estad=round((5.75-6)/(1.27/sqrt(54)),3)
+estad
+
+#valor de p
+round(pnorm(estad),3)
+
+#no se rechaza Ho porque p > 0.05. Los ganaderos tienen la razón.
+
+#pregunta 3
+datos<-c(-2.316, -2.039, -1.568, -1.248, -0.814, -0.813, -0.789, -0.481, -0.379, -0.311, 0.050, 0.089, 0.141, 0.186, 0.301, 0.306, 0.445, 0.707, 0.963, 1.002, 1.110, 1.140, 1.245, 1.277, 1.483, 1.971, 2.229)
+
+media = mean(datos)
+desv = sqrt(var(datos))
+#Ho: datos pertenecen a dis normal
+#Ha: datos no pertenecen a dist normal
+
+shapiro.test(datos)
+
+#no se rechaza Ho porque valor p > 0.05. Existe evidencia de que los datos pertenecen a una dist normal
+```

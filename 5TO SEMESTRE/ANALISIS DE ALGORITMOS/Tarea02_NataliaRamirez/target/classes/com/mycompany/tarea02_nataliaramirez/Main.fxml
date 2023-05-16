@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.tarea02_nataliaramirez.MainController">
+   <children>
+      <Label alignment="CENTER" layoutX="168.0" layoutY="14.0" text="Tiempos de ejecución para puntaje máximo" textAlignment="CENTER">
+         <font>
+            <Font name="Consolas Bold" size="24.0" />
+         </font>
+      </Label>
+      <LineChart fx:id="chart" layoutX="27.0" layoutY="62.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="557.0" prefWidth="818.0" title="Fuerza Bruta vs Mochila">
+        <xAxis>
+          <CategoryAxis label="Cantidad de elementos" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Tiempo en microegundos" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button alignment="CENTER" layoutX="414.0" layoutY="634.0" mnemonicParsing="false" onAction="#ejecutar" text="START" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

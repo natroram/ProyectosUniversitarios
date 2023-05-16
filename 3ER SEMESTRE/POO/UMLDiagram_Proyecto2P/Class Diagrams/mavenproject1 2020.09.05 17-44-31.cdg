@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="mavenproject1">
+  <ClassDiagramComponents>
+    <Class name="App" package="com.mycompany.mavenproject1" visibility="public" xPosition="128.0" yPosition="142.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SystemInfo" package="com.mycompany.mavenproject1" visibility="public" xPosition="393.0" yPosition="142.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="javaVersion" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="javafxVersion" returnType="String" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="VistaExplorar" package="com.mycompany.mavenproject1" visibility="public" xPosition="1140.0" yPosition="883.0">
+      <Fields>
+        <Field name="root" type="BorderPane" visibility="public"/>
+        <Field name="lateral" type="VBox" visibility="public"/>
+        <Field name="c" type="Pane" visibility="public"/>
+        <Field name="hboxC" type="HBox" visibility="public"/>
+        <Field name="R" type="Rover" visibility="public"/>
+        <Field name="k" type="KeyCode" visibility="package"/>
+        <Field name="manejardor" type="HashSet&lt;ManejadorCrateres&gt;" visibility="private"/>
+        <Field name="t1" type="TextField" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="seccionCentral" returnType="void" visibility="public"/>
+        <Method name="crearSuperficie" returnType="void" visibility="public"/>
+        <Method name="seccionBotton" returnType="void" visibility="public"/>
+        <Method name="crearVista" returnType="void" visibility="public"/>
+        <Method name="generarCrateres" returnType="void" visibility="public"/>
+        <Method name="opcionAvanzar" returnType="void" visibility="public">
+          <Argument type="TextArea" name="t2"/>
+        </Method>
+        <Method name="opcionGirar" returnType="void" visibility="public">
+          <Argument type="TextArea" name="t2"/>
+        </Method>
+        <Method name="opcionDirigirse" returnType="void" visibility="public">
+          <Argument type="TextArea" name="t2"/>
+        </Method>
+        <Method name="detectarIntersec" returnType="boolean" visibility="public">
+          <Argument type="Circle" name="cir"/>
+        </Method>
+        <Method name="opcionSensar" returnType="void" visibility="public">
+          <Argument type="TextArea" name="t2"/>
+        </Method>
+        <Method name="isNumeric" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VistaInicio" package="com.mycompany.mavenproject1" visibility="public" xPosition="727.0" yPosition="1024.0">
+      <Fields>
+        <Field name="root" type="BorderPane" visibility="public"/>
+        <Field name="section" type="VBox" visibility="public"/>
+        <Field name="panel" type="FlowPane" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="sectionCenter" returnType="void" visibility="public"/>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VistaPlanificar" package="com.mycompany.mavenproject1" visibility="public" xPosition="680.0" yPosition="295.0">
+      <Fields>
+        <Field name="root" type="BorderPane" visibility="public"/>
+        <Field name="nombreC" type="HBox" visibility="public"/>
+        <Field name="table" type="TableView&lt;Crateres&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="craterN" returnType="void" visibility="private"/>
+        <Method name="getNombres" returnType="ObservableList&lt;Crateres&gt;" visibility="public"/>
+        <Method name="informacion" returnType="void" visibility="private"/>
+        <Method name="manejadorBuscar" returnType="void" visibility="public">
+          <Argument type="TextField" name="texto"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VistaReporte" package="com.mycompany.mavenproject1" visibility="public" xPosition="88.0" yPosition="969.0">
+      <Fields>
+        <Field name="root" type="BorderPane" visibility="public"/>
+        <Field name="table" type="TableView&lt;Reporte&gt;" visibility="public"/>
+        <Field name="search" type="HBox" visibility="public"/>
+        <Field name="repActualizado" type="ObservableList&lt;Reporte&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="seccionFiltro" returnType="void" visibility="private"/>
+        <Method name="seccionBusqueda" returnType="void" visibility="private"/>
+        <Method name="getReporte" returnType="ObservableList&lt;Reporte&gt;" visibility="public"/>
+        <Method name="manejadorFC" returnType="void" visibility="public">
+          <Argument type="TextField" name="fecha_ini"/>
+          <Argument type="TextField" name="fecha_fin"/>
+        </Method>
+        <Method name="manejadorMine" returnType="void" visibility="public">
+          <Argument type="TextField" name="mine"/>
+        </Method>
+        <Method name="generaAlerta" returnType="void" visibility="public"/>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Constants" package="Data" visibility="public" xPosition="696.0" yPosition="142.0">
+      <Fields>
+        <Field name="RESOURCE_FOLDER" type="String" visibility="public" isStatic="true"/>
+        <Field name="nombre" type="String" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="CrateresData" package="Data" visibility="public" xPosition="1285.0" yPosition="398.0">
+      <Fields>
+        <Field name="FILE_PATH" type="String" visibility="private" isStatic="true"/>
+        <Field name="MINERALES" type="String" visibility="public" isStatic="true"/>
+        <Field name="mapa" type="Map&lt;String, Crateres&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getMapa" returnType="Map&lt;String, Crateres&gt;" visibility="public" isStatic="true"/>
+        <Method name="arregloCrateres" returnType="ArrayList&lt;Crateres&gt;" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Crateres" package="utilidades" visibility="public" xPosition="1676.0" yPosition="96.0">
+      <Fields>
+        <Field name="idCrater" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="radio" type="double" visibility="private"/>
+        <Field name="latitud" type="double" visibility="private"/>
+        <Field name="longitud" type="double" visibility="private"/>
+        <Field name="visitado" type="boolean" visibility="private"/>
+        <Field name="minerales" type="String" visibility="private"/>
+        <Field name="circulo" type="Circle" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idCrater"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="double" name="radio"/>
+          <Argument type="double" name="latitud"/>
+          <Argument type="double" name="longitud"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="double" name="latitud"/>
+          <Argument type="double" name="longitud"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdCrater" returnType="int" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getRadio" returnType="double" visibility="public"/>
+        <Method name="getLatitud" returnType="double" visibility="public"/>
+        <Method name="getLongitud" returnType="double" visibility="public"/>
+        <Method name="setIdCrater" returnType="void" visibility="public">
+          <Argument type="int" name="idCrater"/>
+        </Method>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="setRadio" returnType="void" visibility="public">
+          <Argument type="double" name="radio"/>
+        </Method>
+        <Method name="setLatitud" returnType="void" visibility="public">
+          <Argument type="double" name="latitud"/>
+        </Method>
+        <Method name="setLongitud" returnType="void" visibility="public">
+          <Argument type="double" name="longitud"/>
+        </Method>
+        <Method name="isVisitado" returnType="boolean" visibility="public"/>
+        <Method name="setVisitado" returnType="void" visibility="public">
+          <Argument type="boolean" name="visitado"/>
+        </Method>
+        <Method name="getMinerales" returnType="String" visibility="public"/>
+        <Method name="setMinerales" returnType="void" visibility="public">
+          <Argument type="String" name="minerales"/>
+        </Method>
+        <Method name="getCirculo" returnType="Circle" visibility="public"/>
+        <Method name="setCirculo" returnType="void" visibility="public">
+          <Argument type="Circle" name="circulo"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ManejadorCrateres" package="utilidades" visibility="public" xPosition="1069.0" yPosition="602.0">
+      <Fields>
+        <Field name="cr" type="Crateres" visibility="private"/>
+        <Field name="circulo" type="Circle" visibility="private"/>
+        <Field name="root" type="BorderPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Crateres" name="creater"/>
+          <Argument type="Circle" name="circulo"/>
+          <Argument type="BorderPane" name="root"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCr" returnType="Crateres" visibility="public"/>
+        <Method name="event" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Reporte" package="utilidades" visibility="public" xPosition="128.0" yPosition="357.0">
+      <Fields>
+        <Field name="fechaExploracion" type="LocalDate" visibility="public"/>
+        <Field name="nombre" type="String" visibility="public"/>
+        <Field name="mineral" type="String" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LocalDate" name="fechaExploracion"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="minerales"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFechaExploracion" returnType="LocalDate" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getMineral" returnType="String" visibility="public"/>
+        <Method name="setFechaExploracion" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fechaExploracion"/>
+        </Method>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="setMineral" returnType="void" visibility="public">
+          <Argument type="String" name="mineral"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Reporte" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Rover" package="utilidades" visibility="public" xPosition="1516.0" yPosition="874.0">
+      <Fields>
+        <Field name="posX" type="double" visibility="public" isStatic="true"/>
+        <Field name="posY" type="double" visibility="public" isStatic="true"/>
+        <Field name="imaR" type="ImageView" visibility="package"/>
+        <Field name="distancia" type="int" visibility="package" isStatic="true"/>
+        <Field name="puntoX" type="double" visibility="package"/>
+        <Field name="puntoY" type="double" visibility="package"/>
+        <Field name="x" type="double" visibility="package"/>
+        <Field name="y" type="double" visibility="package"/>
+        <Field name="anguloInicial" type="double" visibility="public"/>
+        <Field name="t1" type="Thread" visibility="public"/>
+        <Field name="angulo" type="double" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ImageView" name="imaRover"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPosX" returnType="Double" visibility="public"/>
+        <Method name="setPosX" returnType="void" visibility="public">
+          <Argument type="Double" name="posX"/>
+        </Method>
+        <Method name="getPosY" returnType="Double" visibility="public"/>
+        <Method name="setPosY" returnType="void" visibility="public">
+          <Argument type="Double" name="posY"/>
+        </Method>
+        <Method name="getImaR" returnType="ImageView" visibility="public"/>
+        <Method name="setImaR" returnType="void" visibility="public">
+          <Argument type="ImageView" name="imaR"/>
+        </Method>
+        <Method name="avanzar" returnType="void" visibility="public">
+          <Argument type="Integer" name="i"/>
+        </Method>
+        <Method name="girar" returnType="void" visibility="public">
+          <Argument type="double" name="giro"/>
+        </Method>
+        <Method name="dirigirse" returnType="void" visibility="public">
+          <Argument type="double" name="x"/>
+          <Argument type="double" name="y"/>
+        </Method>
+        <Method name="sensar" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="CrateresInterface" package="utilidades" visibility="public" xPosition="1904.0" yPosition="1050.0">
+      <Methods>
+        <Method name="avanzar" returnType="void" visibility="package">
+          <Argument type="Integer" name="i"/>
+        </Method>
+        <Method name="girar" returnType="void" visibility="package">
+          <Argument type="double" name="giro"/>
+        </Method>
+        <Method name="dirigirse" returnType="void" visibility="package">
+          <Argument type="double" name="x"/>
+          <Argument type="double" name="y"/>
+        </Method>
+        <Method name="sensar" returnType="String" visibility="package"/>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="cr" source="utilidades.ManejadorCrateres" target="utilidades.Crateres" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="utilidades.Reporte" target="utilidades.Reporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repActualizado" source="com.mycompany.mavenproject1.VistaReporte" target="utilidades.Reporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ObservableList&lt;Reporte&gt;"/>
+    <HasRelation name="VentanaP" source="com.mycompany.mavenproject1.VistaInicio" target="com.mycompany.mavenproject1.VistaPlanificar" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="manejardor" source="com.mycompany.mavenproject1.VistaExplorar" target="utilidades.ManejadorCrateres" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;ManejadorCrateres&gt;"/>
+    <UseRelation source="com.mycompany.mavenproject1.VistaReporte" target="utilidades.Reporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="VentanaE" source="com.mycompany.mavenproject1.VistaInicio" target="com.mycompany.mavenproject1.VistaExplorar" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="table" source="com.mycompany.mavenproject1.VistaPlanificar" target="utilidades.Crateres" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapa" source="Data.CrateresData" target="utilidades.Crateres" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map&lt;String, Crateres&gt;"/>
+    <UseRelation source="Data.CrateresData" target="utilidades.Crateres" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.mavenproject1.VistaPlanificar" target="utilidades.Crateres" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="utilidades.Rover" target="utilidades.CrateresInterface"/>
+    <HasRelation name="table" source="com.mycompany.mavenproject1.VistaReporte" target="utilidades.Reporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="VentanaR" source="com.mycompany.mavenproject1.VistaInicio" target="com.mycompany.mavenproject1.VistaReporte" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation source="utilidades.ManejadorCrateres" target="utilidades.Crateres" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="R" source="com.mycompany.mavenproject1.VistaExplorar" target="utilidades.Rover" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

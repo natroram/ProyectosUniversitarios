@@ -1,0 +1,201 @@
+---
+title: "Deber 1 2P Intervalo de Confianza"
+author: "Natalia Ramirez"
+date: "15/8/2021"
+output: word_document
+---
+
+1.- Las estaturas de una muestra aleatoria de 50 estudiantes universitarios tienen una media de 174.5 centímetros y una desviación estándar de 6.9 centímetros. Construya un intervalo de confianza del 98% para la estatura media de todos los estudiantes universitarios.
+
+```{r cars}
+n=50
+media = 174.5
+desviacion = 6.9
+#1-alfa=98%  alfa= 0.02 alfa/2 = 0.01
+w=qt(0.01,49,lower.tail = F)
+w
+error=desviacion/sqrt(n)
+error
+margen.error=w*error
+lim.inf=media-margen.error
+lim.sup=media+margen.error
+lim.inf
+lim.sup
+```
+
+2.- Una muestra aleatoria de 100 propietarios de automóviles del estado de Virginia revela que éstos conducen su automóvil, en promedio, 23,500 kilómetros por año, con una desviación estándar de 3900 kilómetros. Suponga que la distribución de las mediciones es aproximadamente normal. Construya un intervalo de confianza del 99% para el número promedio de kilómetros que un propietario de un automóvil conduce anualmente en Virginia.
+
+```{r}
+n1=100
+xbarra = 23500
+s = 3900
+#1-alfa=99%=0.99 alfa=0.01 alfa/2 = 0.005
+#n>=30  S es aproximadamente a sigma por TLC
+w=qnorm(0.005,lower.tail=F)
+w
+error=s/sqrt(n1)
+error
+margen.error=w*error
+lim.inf=xbarra-margen.error
+lim.sup=xbarra+margen.error
+lim.inf
+lim.sup
+```
+
+3.- Según estudios realizados por el doctor W. H. Bowen, del Instituto Nacional de Salud, y por el doctor J. Yudben, profesor de nutrición y dietética de la Universidad de Londres, el consumo regular de cereales preendulzados contribuye al deterioro de los dientes, a las enfermedades cardiacas y a otras enfermedades degenerativas. En una muestra aleatoria de 20 porciones sencillas similares del cereal Alpha-Bits, el contenido promedio de azúcar era de 11.3 gramos con una desviación estándar de 2.45 gramos. Suponga que el contenido de azúcar está distribuido normalmente y con base en esto construya un intervalo de confianza de 95% para el contenido medio de azúcar de porciones sencillas de Alpha-Bits.
+
+```{r}
+n=20
+xbarra = 11.3
+s = 2.45
+#1-alfa=95%=0.95 alfa=0.05 alfa/2 = 0.025
+w=qt(0.025,19,lower.tail = F)
+w
+error=s/sqrt(n)
+error
+margen.error=w*error
+lim.inf=xbarra-margen.error
+lim.sup=xbarra+margen.error
+lim.inf
+lim.sup
+```
+
+4.- Una muestra aleatoria de 10 barras energéticas de chocolate de cierta marca tiene, en promedio, 230 calorías por barra y una desviación estándar de 15 calorías. Construya un intervalo de confianza del 99% para el contenido medio verdadero de calorías de esta marca de barras energéticas de chocolate. Suponga que la distribución del contenido calórico es aproximadamente normal.
+
+```{r}
+n=10
+xbarra=230
+s =15
+#1-alfa=99%=0.99 alfa=0.01 alfa/2 = 0.005
+w=qt(0.005,9,lower.tail=F)
+w
+error=s/sqrt(n)
+error
+margen.error=w*error
+lim.inf=xbarra-margen.error
+lim.sup=xbarra+margen.error
+lim.inf
+lim.sup
+```
+
+5.- Un fabricante de baterías para automóvil afirma que sus baterías durarán, en promedio, 3 años con una varianza de 1 año. Suponga que 5 de estas baterías tienen duraciones de 1.9, 2.4, 3.0, 3.5 y 4.2 años y con base en esto construya un intervalo de confianza del 95% para 𝜎^2. Suponga que la población de duraciones de las baterías se distribuye de forma aproximadamente normal.
+
+```{r}
+vec = c(1.9,2.4,3.0,3.5,4.2)
+varianza=var(vec)
+varianza
+#1-alfa=95%=0.95 alfa=0.05 alfa/2 = 0.025
+n=5
+w1=qchisq(0.025,n-1,lower.tail = F) #alfa/2
+w1
+w2=qchisq(1-0.025,n-1,lower.tail = F)
+w2
+lim.inf=((n-1)*varianza)/w1
+lim.inf
+lim.sup = ((n-1)*varianza)/w2
+lim.sup
+```
+
+6.- Una muestra aleatoria de 20 estudiantes obtuvo una media de 𝑥̅ = 72 y una varianza de 𝑠􀬶 = 16 en un examen universitario en el área de matemáticas. Suponga que las calificaciones se distribuyen normalmente y con base en esto construya un intervalo de confianza del 98% para 𝜎^2.
+
+```{r}
+n=20
+xbarra=72
+varianza=16
+varianza
+desv = sqrt(varianza)
+desv
+#1-alfa=98%=0.98 alfa=0.02 alfa/2 = 0.01
+w1=qchisq(0.01,n-1,lower.tail = F) #alfa/2
+w1
+w2=qchisq(1-0.01,n-1,lower.tail = F)
+w2
+lim.inf=((n-1)*varianza)/w1
+lim.inf
+lim.sup = ((n-1)*varianza)/w2
+lim.sup
+```
+
+7.- Calcular un intervalo de confianza al nivel α = 0.05 para la probabilidad de p de que un recién nacido sea niño si en una muestra de tamaño 123 se han obtenido 67 niños.
+
+```{r}
+n=123
+alfa=0.05
+alfa_medios=alfa/2
+psomb=67/123
+w=qnorm(alfa_medios,lower.tail = F)
+w
+lim.inf=psomb-(w*(sqrt(psomb*(1-psomb)/n)))
+lim.inf
+lim.sup=psomb+(w*(sqrt(psomb*(1-psomb)/n)))
+lim.sup
+```
+
+8.- En el departamento de control de calidad de una empresa, se quiere determinar si ha habido un descenso significativo de la calidad de su producto entre las producciones de dos semanas consecutivas a consecuencia de un incidente ocurrido durante el fin de semana. Deciden tomar una muestra de la producción de cada semana, si la calidad de cada artículo se mide en una escala de 100, obtienen los resultados siguientes.
+Suponiendo que las varianzas de la puntuación en las dos producciones son iguales, construye un intervalo de confianza para la diferencia de medias al nivel de 95%. Interpreta los resultados obtenidos.
+
+```{r}
+semana_1=c(93,86,90,90,94,91,92,96)
+semana_2=c(93,87,97,90,88,87,84,93)
+
+t.test(semana_1, semana_2 , conf.level = 0.95, var.equal = T)
+
+```
+
+Se puede concluir que la diferencia de las medias es muy cercana a 0, por lo tanto, no es posible afirmar que ha habido un descenso significativo de la calidad de los productos entre ambas semanas.
+
+9.- Mediciones respecto del esfuerzo constante obtenido a partir de pruebas independientes para 2 tipos de suelos proporcionaron los resultados siguientes:
+Suelo tipo I Suelo tipo II
+𝑛􀬵= 30 𝑛􀬶= 35
+𝑥̅􀬵 􀴤􀴤􀴤=1,62 𝑥̅􀬶 􀴤􀴤􀴤=1,43
+𝑠􀬵 =0,26 𝑠􀬶 =0,22
+a) Difieren los 2 suelos con respecto al esfuerzo constante promedio, a un nivel de significancia del 1%?
+b) Calcule el menor valor para el cual se rechaza la idea de que los dos suelos difieren respecto al esfuerzo constante.
+
+```{r}
+#a)
+
+#Ho: media1-media2=0
+#Ha: media 1- media2 diferente de 0
+
+x1<-1.62
+x2<-1.43
+sigma1<-0.26
+sigma2<-0.22
+n1<-30
+n2<-35
+alpha<-0.01/2
+
+z<-(x1-x2)/sqrt((sigma1^2)/n1+(sigma2^2)/n2)
+z
+
+#region de rechazo
+qnorm(alpha)
+qnorm(alpha, lower.tail = F)
+
+#Se rechaza Ho.
+#Existe evidencia estadistica para afirmar que los dos suelos difieren con respecto al esfuerzo constante promedio con 1% de significancia
+
+#b)
+#usando valor p
+p=pnorm(z)
+p
+```
+
+10.- Se seleccionó una muestra aleatoria de 21 Ingenieros de un grupo que labora para un fabricante de equipo electrónico, la desviación estándar de la muestra de las horas de trabajo por semana fue de 7 horas. Determine un intervalo de confianza de 90% para la varianza de la población de horas de trabajo para todos los ingenieros que laboran para el fabricante.
+
+```{r}
+n=21
+#1-alfa=90%=0.90 alfa=0.10 alfa/2 = 0.05
+varianza = 7
+
+w1=qchisq(0.05,n-1,lower.tail = F) #alfa/2
+w1
+w2=qchisq(1-0.05,n-1,lower.tail = F)
+w2
+lim.inf=((n-1)*varianza)/w1
+lim.inf
+lim.sup = ((n-1)*varianza)/w2
+lim.sup
+```
+

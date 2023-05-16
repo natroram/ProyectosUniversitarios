@@ -1,0 +1,317 @@
+---
+title: "DEBER 2 PARCIAL 2"
+author: "Natalia Ramírez"
+date: "20/8/2021"
+output: word_document
+---
+
+1. Las remuneraciones de los empleadas domesticas en el país según la ley no puede ser inferior a 120 dólares. Se ha extraído una muestra aleatoria de 40 empleadas domésticas y se ha obtenido que su salario promedio es de $110 mensuales, se podría concluir que las remuneraciones promedio de las empleadas domésticas son inferiores al límite legal? Con (1-α) 95% (α =5% ) y σ=10
+
+```{r}
+library(BSDA)
+
+n=40
+xbarra= 110
+media=120
+desv=10
+varianza=100
+alpha=0.05
+
+#Ho:u=120
+#Ha:u<120
+
+#estadístico de prueba Z
+estad<-(xbarra-media)/(desv/sqrt(n))
+estad
+
+#region de rechazo
+qnorm(alpha, lower.tail = F)
+
+zsum.test(xbarra,10,40,mu=120,alternative="less",conf.level=0.95)
+
+```
+El valor p=1 es mayor que 0.05. Por lo tanto no se rechaza Ho.
+No existe evidencia estadistica suficiente para afirmar que las remuneraciones promedio de las empleadas domésticas son inferiores al límite legal.
+
+2.
+
+```{r}
+
+n=54
+desv=1.27
+xbarra=5.75
+media=6
+
+#Ho: u=6
+#Ha: u<6
+
+estad=(5.75-6)/(1.27/sqrt(54))
+estad
+
+#Para un intervalo de confianza del 90%
+qnorm(0.10)
+#Para un intervalo de confianza del 95%
+qnorm(0.05)
+
+#valor de p
+pnorm(estad)
+
+#p < 0.10 Entonces se rechazaría para 90% de confianza
+#Debido a que el valor de p es menor que 0.10, pero mayor que 0.05, podemos decir que se rechazaría para 90% de confianza, más no para 95% de confianza con lo cual, los ganaderos tienen la palabra, ya que a pesar de que los transortistas presenten una media(xbarra) inferior al tiempo requerido, tienen una desviación estandar que no permite concluir a Ho en favor de Ha, que es lo que los transportistas querían.
+
+
+```
+
+El valor p es menor que 0.10, entonces, se rechazaría para 90% de confianza. Sin embargo, p es mayor que 0.05 lo que hace que no se rechaza Ho para 95% de confianza. Con esto los ganaderos
+
+3. En una auditoría de calidad efectuada a una empresa que produce entre otros productos, envases plásticos; dicha empresa aspira “certificarse” de acuerdo a la norma ISO 9000; para el efecto se inspeccionan, a manera de prueba, cincuenta actividades de los centenares que realizan y se encuentran que en cuatro de ellas existen inconformidades. La empresa ha implantado un programa piloto de Mejoramiento de Calidad y pretende conseguir como meta inicial que menos del cinco por ciento de sus actividades registren inconformidades, ¿Están ya listos ?
+
+Recurra a un contraste de hipótesis para dar una respuesta.
+
+
+```{r}
+
+n=50
+psomb=4/50
+psomb
+#Ho: p=0.05
+#Ha: p<0.05
+
+esta=(psomb-0.05)/(sqrt(psomb*(1-psomb)/n))
+esta
+
+#valor de p
+pnorm(esta)
+```
+
+Como p es mayor que 0.10, no se rechaza Ho. Entonces, existe evidencia estadística de que no están listos.
+
+4. Una agencia de cobranza de cheques encontró que el 5% de todos los cheques remitidos a la agencia eran de cuentas sin fondos,después de implementar un sistema de verificación para disminuir su perdida la agencia encontró que 50 cheques no tenían fondos en una muestra aleatoria de 1124 que se cobraban.
+Existe suficiente evidencia para cumplir que el sistema de verificación haya reducido la proporción de cheques sin fondo. ¿Cuál es el nivel de significancia de la prueba?
+
+```{r}
+
+n=1124
+psomb=50/1124
+psomb
+#Ho: p=0.05
+#Ha: p<0.05
+
+esta=(psomb-0.05)/(sqrt(psomb*(1-psomb/n)))
+esta
+
+alfa = 2*pnorm(esta)
+alfa
+
+```
+
+EL nivel de significancia de la prueba es de 0.9791348
+
+5. Una compañía farmacéutica realizó un experimento para comprobar que los tiempos promedios en días necesarios para recuperarse del resfriado. En este experimento se compararon las personas que tomaron una dosis diarias de vitamina C con las personas que no recibieron ningún complemento vitamínico.  Se seleccionaron al azar 35 adultos de cada categoría de tratamientos y se obtuvieron los siguientes resultados: 
+
+	        	     Ningún complemento	           Vitamina C
+Media muestral     		6,9			                   5,9
+Desv. Estándar        2,9			                   1,2
+
+Indican estos datos que el uso de  la vitamina C reduce el tiempo promedio requerido para la recuperación? Presente los resultados en términos de α
+```{r}
+
+#Diferencia de medias
+
+#Ho: media1-media2=0
+#Ha: media 1- media2 diferente de 0
+
+x1<-6.9
+x2<-5.9
+sigma1<-2.9
+sigma2<-1.2
+n1<-35
+n2<-35
+
+z<-(x1-x2)/sqrt((sigma1^2)/n1+(sigma2^2)/n2)
+z
+
+#valor de p
+pnorm(z)
+
+alfa = 2*pnorm(z,lower.tail = F)
+alfa
+```
+
+Debido a que p es menor que alfa podemos concluir que no existe evidencia suficiente para rechazar Ho en favor de Ha
+
+
+6. El Instituto Eléctrico Edison publica cifras del número anual de Kilowatt-hora que gastan varios aparatos eléctrodomésticos. Se afirma que una aspiradora gasta un promedio mínimo de 46 kilowatt-hora al año. Si una muestra aleatoria de 12 hogares que se incluye en un estudio planeado indica que las aspiradoras gastan un promedio de 42 kilowatt-hora al año con una desviación estándar de11.9 kilowatt-hora, ¿esto sugiere con un nivel de significancia de 0.05 que las aspiradoras gastan, en promedio, menos de 46 kilowatt-hora anualmente? Suponga que la población de kilowatt-hora es normal.
+
+```{r}
+
+xbarra=42
+n=12
+dsev=11.9
+alfa=0.05
+media=46
+
+#Ho:media = 46
+#Ha:media < 46
+
+estad=(42-46)/(11.9/sqrt(12))
+estad
+
+qt(0.05,11)
+
+```
+
+Como –1.16 > -1.796, no se rechaza Ho y se concluye con un nivel de significancia del 0.05 que no existen suficientes evidencias para afirmar que el número promedio de kilowatt-hora que gastan al año las aspiradoras sea menor de 46 Kw la hora.
+
+7. Un fabricante de baterías para automóvil asegura que la duración de sus baterías tiene una distribución aproximadamente normal con una desviación estándar igual a 0.9 años.  Si una muestra aleatoria de 10 de estas baterias tiene una desviación estándar de 1,2 años.  ¿Piensa usted que σ >0,9 años? Utilice un nivel de significancia de 0,05.
+
+```{r}
+
+varianza=1.2^2
+varianza
+n=10
+alfa=0.05
+
+#Ho: varianza=0.81
+#Ha: varianza>0.81
+
+esta=((n-1)*varianza)/(0.81)
+esta
+
+#estadistico > jicuadrado de alfa con n-1 grados de libertad
+qchisq(alfa,n-1,lower.tail=F)
+
+```
+
+Debido a que el estadistico es menor que la Ji-cuadrada de alfa con n-1 grados de libertad, se concluye que no existe evidencia suficiente para rechazar Ho en favor de Ha.
+
+8. Se llevó a cabo un experimento para comparar el deterioro abrasvio de dos materiales laminados diferentes  Se robaron doce piezas del material 1, exponiendo cada una a una maquina para medir el deterioro.  De la misma manera, se probaron diez piezas del material 2.  En cada caso, se observó la profundidad del deterioro.  Las muestras del material 1 dieron un deterioro promedio de 85 unidades con una desv. estándar de 4, mientras que las muestras del material 2 dieron un promedio de 81 y una desv. estándar muestral de 5.  ¿Puede concluirse en el nivel de significancia 5% que el deterioro abrasivo del material 1 excede al del material 2 por más de 2 unidades?  Asuma que las poblaciones son aproximadamente normales con varianzas iguales.
+
+```{r}
+
+x1=85
+x2=81
+desv1=4
+desv2=5
+alfa=0.05
+n1=12
+n2=10
+
+#Ho: u1-u2=2
+#Ha: u1-u2>2
+
+sp=sqrt(((n1-1)*16+(n2-1)*25)/(n1+n2-2))
+sp
+
+esta=((x1-x2)-2)/(sp*sqrt((1/n1)+(1/n2)))
+esta
+
+qt(alfa,n1+n2-2,lower.tail=F)
+
+```
+
+Debido a que el estadistico es menor que el valor de Z de alfa, no podemos rechazar Ho en favor de Ha.
+
+
+9. Al probar la diferencia en el desgaste abrasivo de los dos materiales se asumió que as dos varianzas poblacionales desconocidas eran iguales. ¿Esta suposición se justifica? Utilice un nivel de significancia de 0,10
+
+```{r}
+
+x1=85
+x2=81
+desv1=4
+desv2=5
+alfa=0.10
+n1=12
+n2=10
+
+#Ho: varianza1 =v arianza2
+#Ha: varianza1 diferente de varianza2
+
+f=desv1^2/desv2^2
+f
+
+qf(alfa/2,n1-1,n2-1)
+qf(alfa/2,n1-1,n2-1,lower.tail=F)
+
+```
+
+La hipotesis nula es rechazada cuando f<0.34 o f>3.10
+
+Debido a que f=0.64 no existe evidencia suficiente para rechazar Ho en favor de Ha
+
+
+10. La resistencia del concreto depende hasta cierto punto del método que se utiliza para el secado.  Todos los métodos diferentes de secado mostraron los siguientes resultados para muestras probadas independientes.
+
+Método I		Método II
+
+𝑛_1= 7		𝑛_2= 10
+
+(𝑥 ̅_1 ) ̅=3250		(𝑥 ̅_1 ) ̅=3235
+
+𝑠_1=210		𝑠_2=190
+
+¿Indican estos datos que los métodos producen concreto con resistencia promedio diferentes?. Realice la prueba con alpha = 0.05
+
+¿Cuál sería el nivel de significancia alcanzado?
+
+```{r}
+
+n1= 7
+n2= 10
+x1=3250
+x2=3235
+s1=210
+s2=190
+
+#Ho: media1-media2=0
+#Ha: media 1- media2 diferente de 0
+sp=sqrt(((n1-1)*s1+(n2-1)*s2)/(n1+n2-2))
+sp
+
+esta=((x1-x2)-2)/(sp*sqrt((1/n1)+(1/n2)))
+esta
+
+qt(0.05/2,n1+n2-2,lower.tail=F)
+qt(0.05/2,n1+n2-2)
+
+```
+
+Debido a que el estadistico es menor que -2.13145, existe evidencia suficiente para rechazar Ho. Existe evidencia estadística de que los métodos producen concreto con resistencia promedio diferentes.
+
+11. Para verificar si el proceso de llenado de bolsas de café con 500 gramos está operando correctamente se toman aleatoriamente muestras de tamaño diez cada cuatro horas. 
+Una muestra de bolsas está compuesta por las siguientes observaciones: 502, 501, 497, 491, 496, 501, 502, 500, 489, 490.
+
+¿Está el proceso llenando bolsas conforme lo dice la envoltura? Use un nivel de significancia del 5%.
+
+```{r}
+
+#Ho: media=500
+#Ha: media diferente de 500
+
+cont<-c(502, 501, 497, 491, 496, 501, 502, 500, 489, 490)
+cont
+
+shapiro.test(cont)
+require(nortest)
+ad.test(cont)
+
+
+#Ho: los datos son N(media, varianza)
+#Ha: los datos no son N(media, varianza)
+#valor p <0.05 entonces se rechaza Ho a favor de Ha, NO son normales
+#valor p >=0.05 entonces No se rechaza Ho en contra de Ha, Son normales
+
+#Conclusion: Se comprueba la normalidad de los datos dado que el valor p es 0.05
+
+t.test(cont,alternative = "two.sided", conf.level=0.99, mu=500)
+
+
+qt(0.05/2,9)
+qt(0.05/2,9, lower.tail = F)
+
+```
+No existe evidencia estadistica par afirmar que el llenado de las bolsas de cafe es diferente de 500 con un alpha del 0.05
+No se rechaza Ho.
+Entonces el proceso de llenado si esta cumpliendo con lo que dice la envoltura con un alpha de 0.09
+

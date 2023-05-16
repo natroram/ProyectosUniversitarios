@@ -1,0 +1,10 @@
+Estudios Opinión Numero
+bajo	malo	1
+medio	malo	40
+alto	malo	25
+bajo 	regular	10
+medio	regular	80
+alto	regular	12
+bajo	bueno	30
+medio	bueno	60
+alto	bueno	0

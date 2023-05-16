@@ -1,0 +1,51 @@
+---
+title: "EXAMEN PRIMER PARCIAL"
+author: "Natalia Ramirez"
+date: "8/7/2021"
+output: word_document
+---
+Pregunta 2:
+
+letras totales: PARTIDO : 7
+palabras distintas = 7P7 = 5040
+
+palabras que empiecen con PAR = 7P4 = 840 
+```{r cars}
+#Pregunta 3
+#P(A) = 0.25, P(B)=0.20, P(C) = 0.40, P(D)=0.75
+#1)
+#P(EXPLOSION)= P(A)P(E|A) + P(B)P(E|B) + P(C)P(E|C) + p(D)P(E|D)
+E= 0.25*0.3 + 0.2*0.4 + 0.4*0.25 + 0.75*0.05 
+E
+#2) B ya que P(E|B) = 0.4
+
+#Pregunta 4
+#mediana -> F(Xm)-F(0) -> (Xm^2)/4 = 1/2 -> X = raíz de 2
+x=sqrt(2)
+x
+#Q3 -> (Xm^2)/4 = 3/4 -> x = raiz de 3
+Q3=sqrt(3)
+Q3
+
+#Pregunta 5
+media = 300
+sd= 10
+
+#1) mas de 310ml
+pnorm(310, mean = media, sd = sd, lower.tail = F)
+
+#2) proporcion de x menor a 270
+p = pnorm(270, mean = media, sd = sd)
+p*1000
+
+#Pregunta 6
+media = 6
+vari = 12
+#6 = alfa * beta, 12 = alfa*(beta^2)
+#12 = alfa * (36/(alfa^2)) -> alfa = 36/12 = 3, beta = 2
+1-pgamma(10,shape = 1, rate = 1/6, lower.tail = F)
+
+
+
+```
+

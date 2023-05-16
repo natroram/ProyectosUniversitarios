@@ -1,0 +1,29 @@
+---
+title: "Justificacion Evaluacion #1"
+author: "Natalia Ramirez"
+date: "6/6/2021"
+output: word_document
+---
+
+***Resolución de la Prueba***
+```{r}
+#pregunta 1
+datos = iris
+dim(datos)
+
+#Pregunta 2 y Pregunta 6
+head(datos,5)
+colnames(datos)
+
+#Pregunta 3
+tabla = table(datos$Species)
+tabla
+tabla_freq = prop.table(tabla)
+tabla_freq
+
+#Pregunta 7, 8, 9, 10
+summary(datos)
+
+```
+
+

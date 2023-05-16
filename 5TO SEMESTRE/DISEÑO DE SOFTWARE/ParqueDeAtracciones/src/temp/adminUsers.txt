@@ -1,0 +1,2 @@
+merche;777;mercedesaris@gmail.com;Mercedes;85456;231587;1500000;Oficina 3;
+merche;4321;jairo003@gmail.com;Jairo;10366;2312973;1500000;Oficina 3;

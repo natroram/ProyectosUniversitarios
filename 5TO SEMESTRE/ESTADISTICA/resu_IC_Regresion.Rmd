@@ -1,0 +1,105 @@
+---
+title: "resu_IC_Regresion"
+author: "Natalia Ramírez"
+date: "1/9/2021"
+output: html_document
+---
+#DISTRIBUCIONES
+
+##GAMMA
+media = alfa*beta
+varianza = alfa*beta^2
+##EXPONENCIAL
+gamma con alfa = 1, beta = beta
+#UNIFORME
+media = (alfa+beta)/2
+varianza = (beta-alfa)^2/2
+##POISSON
+media = varianza = lambda
+##BINOMIAL
+media = n*p
+varianza = n*p*(1-p)
+
+#INTERVALO DE CONFIANZA
+
+valor p = pnorm(est.prueba) - si n >30
+valor p = pt(est.prueba) - si n < 30
+
+#****para la media - n>30 - Normal****
+n
+media
+desv<-sqrt(varianza)
+desv  
+w<-qnorm(alfa/2, lower.tail = F)
+error<-desv/sqrt(n)
+error
+margen.error<-w*error
+lim.inf<-media-margen.error
+lim.sup<-media+margen.error
+lim.inf
+lim.sup
+
+#****para la media - n<30 - Normal****
+n
+media
+desv
+
+w<-qt(alfa/2,n-1, lower.tail=F) # t(alfa/2,n-1
+w
+
+error<-desv/sqrt(n)
+error
+margen.error<-w*error
+lim.inf<-media-margen.error
+lim.sup<-media+margen.error
+lim.inf
+lim.sup
+
+#****para la varianza****
+lect<-c(28, 25, 29, 27, 27, 30,25, 24, 23, 29 )
+lect
+
+varianza<-var(lect)
+varianza
+n
+
+w1<-qchisq(alfa/2, n-1, lower.tail = F)
+w1 
+
+w2<-qchisq(1-(alfa/2), n-1, lower.tail = F)
+w2
+
+lim.inf<-((n-1)*varianza)/w1
+lim.inf
+
+lim.sup<-((n-1)*varianza)/w2
+lim.sup
+
+#****para la proporcion****
+n
+psomb = x/n
+psomb
+
+w<-qnorm(alfa/2, lower.tail = F)
+w
+
+lim.inf<-psomb-(w*(sqrt(psomb*(1-psomb)/n)))
+lim.inf
+
+lim.sup<-psomb+(w*(sqrt(psomb*(1-psomb)/n)))
+lim.sup
+
+#DOS POBLACIONES
+
+#****para diferencia de medias****
+
+#****para diferencia de proporciones****
+
+#****para razon de varianzas****
+
+#REGRESION LINEAL
+
+regresion <- lm(v.dependiente ~ v.independiente)
+summary(regresion)
+predict(regresion, nuevas = c(datos prediccion))
+

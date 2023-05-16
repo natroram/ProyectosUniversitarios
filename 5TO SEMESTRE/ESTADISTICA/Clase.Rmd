@@ -1,0 +1,67 @@
+---
+title: "Practica"
+author: "Goya Pedro"
+date: "8/22/2021"
+output: html_document
+---
+
+```{r}
+library(readxl)
+datos<- read_excel("BASE DE DATOS FINAL - CORONAVIRUS.xlsx")
+datos
+```
+```{r}
+library(ggplot2)
+plot(datos[,4:6])
+```
+```{r}
+pairs( ~ datos$CONFIRMADOS + datos$RECUPERADOS + datos$MUERTOS, data = datos)
+```
+```{r}
+pairs(datos[,3:5],labels = colnames(datos[,4:6]),pch = 21 , main = "Visualización", gap = 1, 
+      font.labels = 1)
+```
+```{r}
+library(corrplot)
+corrplot(cor(datos[,4:6]))
+```
+```{r}
+library(corrplot)
+corrplot(cor(datos[,4:6]),method = "shade")
+```
+```{r}
+cor(datos[,4:6])
+```
+```{r}
+ecuador = datos[1:20,4:6]
+cuadro = matrix(c(1:3,3), nrow=2, byrow=FALSE)
+layout(cuadro)
+layout.show(3)
+boxplot(ecuador$CONFIRMADOS)
+boxplot(ecuador$RECUPERADOS)
+boxplot(ecuador$MUERTOS)
+```
+```{r}
+var(ecuador)
+```
+```{r}
+library(performance)
+modelo = lm(ecuador$CONFIRMADOS ~ ecuador$RECUPERADOS , data = ecuador)
+summary(modelo)
+check_model(modelo)
+```
+```{r}
+shapiro.test(ecuador$MUERTOS)
+```
+```{r}
+t.test(ecuador$MUERTOS)
+```
+
+```{r}
+plot(density(ecuador$MUERTOS))
+```
+```{r}
+chisq.test(ecuador$CONFIRMADOS,rescale.p = T)
+```
+
+

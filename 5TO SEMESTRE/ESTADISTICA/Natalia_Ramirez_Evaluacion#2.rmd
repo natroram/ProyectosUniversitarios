@@ -1,0 +1,68 @@
+---
+title: "Justificacion Evaluacion #2"
+author: "Natalia Ramirez"
+date: "6/6/2021"
+output: word_document
+---
+
+***Resolución de la Prueba***
+```{r ev2}
+
+
+banco <- read.csv(file = "bank.csv", sep = ";")
+View(banco)
+
+#Ordenando datos de Edad 
+dat = c(banco$age)
+dat = sort(dat)
+
+extremo_dat = range(dat)
+
+
+summary(dat)
+prob = c(0, 0.05, 0.25, 0.5, 0.75, 0.95, 1)
+valores = quantile(dat, probs = prob)
+valores
+rango_intercuartil = IQR(dat)
+
+#valores aberrantes - Pregunta 1
+Q1 = quantile(dat, probs = 0.25)
+Q3 = quantile(dat, probs = 0.75)
+
+cerca_int = Q1-1.5*rango_intercuartil
+cerca_ext = Q3+1.5*rango_intercuartil
+
+valor_logico_int = dat<cerca_int
+
+sum(valor_logico_int) # numero de valores por debajo
+
+ifelse(sum(valor_logico_int)==0, "no hay valores aberrantes inferiores", dat[valor_logico_int])
+
+valor_logico_ext = dat>cerca_ext
+
+sum(valor_logico_ext) #numero de valores por arriba
+
+ifelse(sum(valor_logico_ext)==0, "no hay valores aberrantes superiores", dat[valor_logico_ext])
+
+#Pregunta 2
+
+#Diagrama de cajas de Edad
+boxplot(dat, horizontal=TRUE, xlab="Edad")
+
+#pregunta 3
+X=c(4.054, 4.024, 4.030, 3.976, 3.947, 3.969, 3.937, 4.057, 3.964, 3.908, 4.047, 3.980, 4.017, 3.906, 3.963, 4.053, 3.951, 4.007, 3.970, 3.927, 4.015, 3.978, 3.944, 3.981, 3.951, 3.947, 3.992, 3.918, 4.031, 3.926)
+X=sort(X)
+
+iqr = IQR(X)
+iqr
+
+#Pregunta 4
+rango = max(dat) - min(dat)
+rango
+
+#Pregunta 5
+#Los valores del Q3 siempre son mayores a la media la cual está dada por el Q2, por tanto el resultado es falso
+
+quantile(X,probs=c(0.75))<quantile(X, probs=c(0.50))
+
+```

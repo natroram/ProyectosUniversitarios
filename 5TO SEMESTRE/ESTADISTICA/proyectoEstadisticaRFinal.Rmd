@@ -1,0 +1,721 @@
+---
+title: Análisis Explorativo en R sobre los impactos del covid-19 en países latinoamericanos
+  y en potencias mundiales
+author: "Natalia Ramírez, Juliette Mera, Alex Villegas, Fiore Serrano, Luis Zambrano"
+date: "25/8/2021"
+output: html_document
+---
+
+#Integrantes
+
+Natalia Ramírez
+Juliette Mera
+Alex Villegas
+Fiore Serrano
+Luis Zambrano
+
+#Desarrollo de la sección en R
+
+#Creación de Tablas principales
+
+Tabla principal con datos de casos confirmados, recuperados y muertos por covid-19 en los meses desde Enero del 2020 hasta Julio del 2021 de los países Ecuador, Chile, China y Estados Unidos. 
+
+```{r data total}
+
+require(fdth)
+require(corrplot)
+require(ggplot2)
+require(nortest)
+
+pais = c("ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","ECUADOR","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","CHILE","US","US","US","US","US","US","US","US","US","US","US","US","US","US","US","US","US","US","US","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA","CHINA")
+
+meses = c("ENE 2020","FEB 2020","MAR 2020","ABR 2020","MAY 2020","JUN 2020","JUL 2020","AGO 2020","SEP 2020","OCT 2020","NOV 2020","DIC 2020","ENE 2021","FEB 2021","MAR 2021","ABR 2021","MAY 2021","JUN 2021","JUL 2021","ENE 2020","FEB 2020","MAR 2020","ABR 2020","MAY 2020","JUN 2020","JUL 2020","AGO 2020","SEP 2020","OCT 2020","NOV 2020","DIC 2020","ENE 2021","FEB 2021","MAR 2021","ABR 2021","MAY 2021","JUN 2021","JUL 2021","ENE 2020","FEB 2020","MAR 2020","ABR 2020","MAY 2020","JUN 2020","JUL 2020","AGO 2020","SEP 2020","OCT 2020","NOV 2020","DIC 2020","ENE 2021","FEB 2021","MAR 2021","ABR 2021","MAY 2021","JUN 2021","JUL 2021","ENE 2020","FEB 2020","MAR 2020","ABR 2020","MAY 2020","JUN 2020","JUL 2020","AGO 2020","SEP 2020","OCT 2020","NOV 2020","DIC 2020","ENE 2021","FEB 2021","MAR 2021","ABR 2021","MAY 2021","JUN 2021","JUL 2021")
+
+confirmados_total<- c(0,0,2240,22694,14164,17334,28923,28412,23280,31145,24493,19827,38316,35327,42600,53107,44175,32467,28868,0,2,2282,15418,66444,195247,76274,56059,51265,47265,41487,57230,118136,97516,170913,202707,186101,171556,59869,8,17,143887,937193,717688,843440,1925231,1459482,1208552,1930288,4504912,6429546,6149098,2402096,1813678,1885745,916731,397378,1313306,9802,69554,2923,1677,190,639,2870,2259,631,821,1536,3061,4100,902,767,762,520,755,1204)
+
+recuperados_total<- c(0,0,54,1504,18034,36840,20388,24849,10627,29463,28045,14703,25307,38084,33786,36914,56553,48537,20192,0,0,156,8424,70809,161840,87098,55552,52710,50053,39962,50778,104599,98549,150740,198077,179693,189752,71700,0,7,2658,156598,285495,275873,717529,746665,655863,771790,1533841,5146319,10292638,20585276,41170552,49990243,132331347,264662694,529325388,214,39106,36886,2317,866,243,1155,3807,866,675,882,2906,2856,2870,888,638,595,629,692)
+
+muertes_total<- c(0,0,75,825,2458,1169,1175,854,4799,1315,791,573,825,952,1036,1784,1941,988,10071,0,0,12,215,4411,1050,3769,1832,1452,1466,1203,1198,1844,2120,2563,3218,2947,3245,2903,0,1,3568,69751,34409,19737,26518,29627,23399,24501,39299,81172,97185,65616,37503,31798575,31756627,63502938,126997205,213,2624,472,1328,1,3,20,62,16,0,4,39,35,18,6,4,1,1,1)
+
+datos<- data.frame(Pais=pais, Meses=meses, Confirmados=confirmados_total, Recuperados=recuperados_total, Muertes=muertes_total)
+datos
+
+```
+
+Tablas de cada país:
+
+Ecuador
+```{r tabla ecuador}
+ecuador<- subset(datos, subset = datos$Pais=="ECUADOR")
+ecuador
+```
+
+Chile
+```{r tabla chile}
+chile<- subset(datos, subset = datos$Pais=="CHILE")
+chile
+```
+
+Estados Unidos
+```{r tabla USA}
+usa<- subset(datos, subset = datos$Pais=="US")
+usa
+```
+
+China
+```{r tabla china}
+china<- subset(datos, subset = datos$Pais=="CHINA")
+china
+```
+
+Tabla con datos de Ecuador y Chile como datos de latinoamerica
+```{r tabla latinoamerica}
+latam<- subset(datos, subset = datos$Pais=="ECUADOR" | datos$Pais=="CHILE")
+latam
+```
+
+Tabla con datos USA y China como datos de potencias
+```{r tabla potencias}
+potencias<- subset(datos, subset = datos$Pais=="US" | datos$Pais=="CHINA")
+potencias
+```
+
+#Desarrollo de la estadística descriptiva
+
+##Estadística descriptiva de Ecuador
+
+Casos confirmados en Ecuador
+```{r conf ecu}
+
+#tabla de frecuencias
+tda_conf<- fdt(ecuador$Confirmados, breaks = "Sturges")
+tda_conf
+#medidas, cuartiles, min, max
+summary(ecuador$Confirmados)
+#deciles
+quantile(ecuador$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(ecuador$Confirmados)
+varianza
+#desviacion estandar
+desv<-sd(ecuador$Confirmados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_conf, type = "fh", main = "Hist Casos confirmados Ecuador", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(ecuador$Confirmados, main="D.Cajas confirmados Ecuador", col="blue")
+
+```
+
+Casos recuperados en Ecuador
+```{r rec ecu}
+
+#tabla de frecuencias
+tda_rec<- fdt(ecuador$Recuperados, breaks = "Sturges")
+tda_rec
+#medidas, cuartiles, min, max
+summary(ecuador$Recuperados)
+#deciles
+quantile(ecuador$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(ecuador$Recuperados)
+varianza
+#desviacion estandar
+desv<-sd(ecuador$Recuperados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_rec, type = "fh", main = "Hist Casos recuperados Ecuador", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(ecuador$Recuperados, main="D.Cajas recuperados Ecuador", col="purple")
+
+```
+
+Casos muertes en Ecuador
+```{r muertes ecu}
+
+#tabla de frecuencias
+tda_muertes<- fdt(ecuador$Muertes, breaks = "Sturges")
+tda_muertes
+#medidas, cuartiles, min, max
+summary(ecuador$Muertes)
+#deciles
+quantile(ecuador$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza<-var(ecuador$Muertes)
+varianza
+#desviacion estandar
+desv<-sd(ecuador$Muertes)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_muertes, type = "fh", main = "Hist Casos muertes Ecuador", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(ecuador$Muertes, main="D.Cajas muertes Ecuador", col="green")
+
+```
+
+##Estadística descriptiva de Chile
+
+Casos confirmados en Chile
+```{r conf chile}
+
+#tabla de frecuencias
+tda_conf<- fdt(chile$Confirmados, breaks = "Sturges")
+tda_conf
+#medidas, cuartiles, min, max
+summary(chile$Confirmados)
+#deciles
+quantile(chile$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(chile$Confirmados)
+varianza
+#desviacion estandar
+desv<-sd(chile$Confirmados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_conf, type = "fh", main = "Hist Casos confirmados Chile", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(chile$Confirmados, main="D.Cajas confirmados Chile", col="blue")
+
+```
+
+Casos recuperados en Chile
+```{r rec chile}
+
+#tabla de frecuencias
+tda_rec<- fdt(chile$Recuperados, breaks = "Sturges")
+tda_rec
+#medidas, cuartiles, min, max
+summary(chile$Recuperados)
+#deciles
+quantile(chile$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(chile$Recuperados)
+varianza
+#desviacion estandar
+desv<-sd(chile$Recuperados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_rec, type = "fh", main = "Hist Casos recuperados Chile", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(chile$Recuperados, main="D.Cajas recuperados Chile", col="purple")
+
+```
+
+Casos muertes en Chile
+```{r muertes chile}
+
+#tabla de frecuencias
+tda_muertes<- fdt(chile$Muertes, breaks = "Sturges")
+tda_muertes
+#medidas, cuartiles, min, max
+summary(chile$Muertes)
+#deciles
+quantile(chile$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza<-var(chile$Muertes)
+varianza
+#desviacion estandar
+desv<-sd(chile$Muertes)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_muertes, type = "fh", main = "Hist Casos muertes Chile", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(chile$Muertes, main="D.Cajas muertes Chile", col="green")
+
+```
+
+##Estadística Descriptiva Latinoamerica (Ecuador & Chile)
+
+Casos confirmados en Latinoamerica
+```{r conf latam}
+
+#tabla de frecuencias
+tda_conf_latam<- fdt(latam$Confirmados, breaks = "Sturges")
+tda_conf_latam
+#medidas, cuartiles, min, max
+summary(latam$Confirmados)
+#deciles
+quantile(latam$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza_latam_conf<-var(latam$Confirmados)
+varianza_latam_conf
+#desviacion estandar
+desv_latam<-sd(latam$Confirmados)
+desv_latam
+
+par(mfrow=c(1,2))
+plot(tda_conf_latam, type = "fh", main = "Hist Casos confirmados Latam", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(latam$Confirmados, main="D.Cajas confirmados Latam", col="blue")
+
+```
+
+Casos recuperados en Latinoamerica
+```{r rec latam}
+
+#tabla de frecuencias
+tda_rec_latam<- fdt(latam$Recuperados, breaks = "Sturges")
+tda_rec_latam
+#medidas, cuartiles, min, max
+summary(latam$Recuperados)
+#deciles
+quantile(latam$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza_latam_rec<-var(latam$Recuperados)
+varianza_latam_rec
+#desviacion estandar
+desv_latam_rec<-sd(latam$Recuperados)
+desv_latam_rec
+
+par(mfrow=c(1,2))
+plot(tda_rec_latam, type = "fh", main = "Hist Casos recuperados Latam", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(latam$Recuperados, main="D.Cajas recuperados Latam", col="purple")
+
+```
+
+Casos muertes en Latam
+```{r muertes latam}
+
+#tabla de frecuencias
+tda_muertes_latam<- fdt(latam$Muertes, breaks = "Sturges")
+tda_muertes_latam
+#medidas, cuartiles, min, max
+summary(latam$Muertes)
+#deciles
+quantile(latam$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza_latam_muertes<-var(latam$Muertes)
+varianza_latam_muertes
+#desviacion estandar
+desv_latam_muertes<-sd(latam$Muertes)
+desv_latam_muertes
+
+par(mfrow=c(1,2))
+plot(tda_muertes_latam, type = "fh", main = "Hist Casos muertes Latam", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(latam$Muertes, main="D.Cajas muertes Latam", col="green")
+
+```
+
+##Estadística descriptiva de USA
+
+Casos confirmados en USA
+```{r conf usa}
+
+#tabla de frecuencias
+tda_conf<- fdt(usa$Confirmados, breaks = "Sturges")
+tda_conf
+#medidas, cuartiles, min, max
+summary(usa$Confirmados)
+#deciles
+quantile(usa$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(usa$Confirmados)
+varianza
+#desviacion estandar
+desv<-sd(usa$Confirmados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_conf, type = "fh", main = "Hist Casos confirmados USA", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(usa$Confirmados, main="D.Cajas confirmados USA", col="blue")
+
+```
+
+Casos recuperados en USA
+```{r rec usa}
+
+#tabla de frecuencias
+tda_rec<- fdt(usa$Recuperados, breaks = "Sturges")
+tda_rec
+#medidas, cuartiles, min, max
+summary(usa$Recuperados)
+#deciles
+quantile(usa$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(usa$Recuperados)
+varianza
+#desviacion estandar
+desv<-sd(usa$Recuperados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_rec, type = "fh", main = "Hist Casos recuperados USA", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(usa$Recuperados, main="D.Cajas recuperados USA", col="purple")
+
+```
+
+Casos muertes en USA
+```{r muertes usa}
+
+#tabla de frecuencias
+tda_muertes<- fdt(usa$Muertes, breaks = "Sturges")
+tda_muertes
+#medidas, cuartiles, min, max
+summary(usa$Muertes)
+#deciles
+quantile(usa$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza<-var(usa$Muertes)
+varianza
+#desviacion estandar
+desv<-sd(usa$Muertes)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_muertes, type = "fh", main = "Hist Casos muertes USA", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(usa$Muertes, main="D.Cajas muertes USA", col="green")
+
+```
+
+##Estadística descriptiva de China
+
+Casos confirmados en China
+```{r conf china}
+
+#tabla de frecuencias
+tda_conf<- fdt(china$Confirmados, breaks = "Sturges")
+tda_conf
+#medidas, cuartiles, min, max
+summary(china$Confirmados)
+#deciles
+quantile(china$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(china$Confirmados)
+varianza
+#desviacion estandar
+desv<-sd(china$Confirmados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_conf, type = "fh", main = "Hist Casos confirmados China", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(china$Confirmados, main="D.Cajas confirmados China", col="blue")
+
+```
+
+Casos recuperados en China
+```{r rec china}
+
+#tabla de frecuencias
+tda_rec<- fdt(china$Recuperados, breaks = "Sturges")
+tda_rec
+#medidas, cuartiles, min, max
+summary(china$Recuperados)
+#deciles
+quantile(china$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza<-var(china$Recuperados)
+varianza
+#desviacion estandar
+desv<-sd(china$Recuperados)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_rec, type = "fh", main = "Hist Casos recuperados China", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(china$Recuperados, main="D.Cajas recuperados China", col="purple")
+
+```
+
+Casos muertes en China
+```{r muertes china}
+
+#tabla de frecuencias
+tda_muertes<- fdt(china$Muertes, breaks = "Sturges")
+tda_muertes
+#medidas, cuartiles, min, max
+summary(china$Muertes)
+#deciles
+quantile(china$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza<-var(china$Muertes)
+varianza
+#desviacion estandar
+desv<-sd(china$Muertes)
+desv
+
+par(mfrow=c(1,2))
+plot(tda_muertes, type = "fh", main = "Hist Casos muertes China", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(china$Muertes, main="D.Cajas muertes China", col="green")
+
+```
+
+##Estadística Descriptiva Potencias (USA & China)
+
+Casos confirmados en Potencias
+```{r conf potencias}
+
+#tabla de frecuencias
+tda_conf_potencias<- fdt(potencias$Confirmados, breaks = "Sturges")
+tda_conf_potencias
+#medidas, cuartiles, min, max
+summary(potencias$Confirmados)
+#deciles
+quantile(potencias$Confirmados, probs = c(0.05,0.95))
+#varianza
+varianza_potencias_conf<-var(potencias$Confirmados)
+varianza_potencias_conf
+#desviacion estandar
+desv_potencias_conf<-sd(potencias$Confirmados)
+desv_potencias_conf
+
+par(mfrow=c(1,2))
+plot(tda_conf_potencias, type = "fh", main = "Hist Casos confirmados potencias", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "blue")
+boxplot(potencias$Confirmados, main="D.Cajas confirmados potencias", col="blue")
+
+```
+
+Casos recuperados en Potencias
+```{r rec potencias}
+
+#tabla de frecuencias
+tda_rec_potencias<- fdt(potencias$Recuperados, breaks = "Sturges")
+tda_rec_potencias
+#medidas, cuartiles, min, max
+summary(potencias$Recuperados)
+#deciles
+quantile(potencias$Recuperados, probs = c(0.05,0.95))
+#varianza
+varianza_potencias_rec<-var(potencias$Recuperados)
+varianza_potencias_rec
+#desviacion estandar
+desv_potencias_rec<-sd(potencias$Recuperados)
+desv_potencias_rec
+
+par(mfrow=c(1,2))
+plot(tda_rec_potencias, type = "fh", main = "Hist Casos recuperados potencias", xlab = "Casos recuperados", ylab = "Frecuencia absoluta", col = "purple")
+boxplot(potencias$Recuperados, main="D.Cajas recuperados potencias", col="purple")
+
+```
+
+Casos muertes en Potencias
+```{r muertes potencias}
+
+#tabla de frecuencias
+tda_muertes_potencias<- fdt(potencias$Muertes, breaks = "Sturges")
+tda_muertes_potencias
+#medidas, cuartiles, min, max
+summary(potencias$Muertes)
+#deciles
+quantile(potencias$Muertes, probs = c(0.05,0.95))
+#varianza
+varianza_potencias_muertes<-var(potencias$Muertes)
+varianza_potencias_muertes
+#desviacion estandar
+desv_potencias_muertes<-sd(potencias$Muertes)
+desv_potencias_muertes
+
+par(mfrow=c(1,2))
+plot(tda_muertes_potencias, type = "fh", main = "Hist Casos muertes potencias", xlab = "Casos confirmados", ylab = "Frecuencia absoluta", col = "green")
+boxplot(potencias$Muertes, main="D.Cajas muertes potencias", col="green")
+
+```
+
+##Gráficos de Pie para variable cualitativa
+
+###Proporción de casos confirmados de covid-19 por país
+```{r barra pais conf}
+
+prop.conf.ec<- round((sum(ecuador$Confirmados)/sum(datos$Confirmados))*100,2)
+prop.conf.chile<- round((sum(chile$Confirmados)/sum(datos$Confirmados))*100,2)
+prop.conf.usa <- round((sum(usa$Confirmados)/sum(datos$Confirmados))*100,2)
+prop.conf.china <- round((sum(china$Confirmados)/sum(datos$Confirmados))*100,2)
+
+tabla.prop.conf<- data.frame("Pais"=c("Ecuador", "Chile", "USA", "China"), "Proporcion"=c(prop.conf.ec, prop.conf.chile, prop.conf.usa, prop.conf.china))
+tabla.prop.conf
+
+ggplot(data = tabla.prop.conf, aes(x=Pais, y=Proporcion, fill=Pais)) + geom_bar(stat="identity") + xlab("País") + ylab("Porcentaje de proporción de casos confirmados") + geom_text( aes(label= Proporcion),hjust=-1, vjust=-0.5, size=4) + theme_update() + scale_y_continuous(limit=c(0,100))
+
+
+```
+
+###Proporción de casos recuperados de covid-19 por país
+```{r barra pais rec}
+
+prop.rec.ec<- round((sum(ecuador$Recuperados)/sum(datos$Recuperados))*100,2)
+prop.rec.chile<- round((sum(chile$Recuperados)/sum(datos$Recuperados))*100,2)
+prop.rec.usa <- round((sum(usa$Recuperados)/sum(datos$Recuperados))*100,2)
+prop.rec.china <- round((sum(china$Recuperados)/sum(datos$Recuperados))*100,2)
+
+tabla.prop.rec<- data.frame("Pais"=c("Ecuador", "Chile", "USA", "China"), "Proporcion"=c(prop.rec.ec, prop.rec.chile, prop.rec.usa, prop.rec.china))
+tabla.prop.rec
+
+ggplot(data = tabla.prop.rec, aes(x=Pais, y=Proporcion, fill=Pais)) + geom_bar(stat="identity") + xlab("País") + ylab("Porcentaje de proporción de casos recuperados") + geom_text( aes(label= Proporcion),hjust=-1, vjust=-0.5, size=4) + theme_update() + scale_y_continuous(limit=c(0,100))
+
+
+```
+
+###Proporción de casos fallecidos de covid-19 por país
+```{r barra pais Muertes}
+
+prop.muertes.ec<- round((sum(ecuador$Muertes)/sum(datos$Muertes))*100,2)
+prop.muertes.chile<- round((sum(chile$Muertes)/sum(datos$Muertes))*100,2)
+prop.muertes.usa <- round((sum(usa$Muertes)/sum(datos$Muertes))*100,2)
+prop.muertes.china <- round((sum(china$Muertes)/sum(datos$Muertes))*100,2)
+
+tabla.prop.muertes<- data.frame("Pais"=c("Ecuador", "Chile", "USA", "China"), "Proporcion"=c(prop.muertes.ec, prop.muertes.chile, prop.muertes.usa, prop.muertes.china))
+tabla.prop.muertes
+
+ggplot(data = tabla.prop.muertes, aes(x=Pais, y=Proporcion, fill=Pais)) + geom_bar(stat="identity") + xlab("País") + ylab("Porcentaje de proporción de casos muertos") + geom_text( aes(label= Proporcion),hjust=-1, vjust=-0.5, size=4) + theme_update() + scale_y_continuous(limit=c(0,100))
+
+
+```
+
+##Matrices
+
+###Matriz de Correlación 
+```{r mat corr}
+datos2<-data.frame("Confirmados" = datos$Confirmados, "Recuperados"=datos$Recuperados, "Muertes"=datos$Muertes)
+
+correlacion<- round(cor(datos2),3)
+correlacion
+
+corrplot.mixed(correlacion)
+```
+
+###Matriz de varianzas y covarianzas
+```{r mat cov}
+cov(datos2)
+```
+
+###Matriz diagrama de dispersión
+```{r mat disp}
+plot(datos2, col="red")
+
+```
+
+#Desarrollo Inferencial
+
+##Bondad de Ajuste
+
+Se quiere verificar si los datos de los países latinoamericanos juntos se ajustan a una distribución Normal.
+
+###Prueba con casos confirmados de latinoamerica
+
+Ho: Los casos confirmados de latinoamerica se ajustan a una distribucion Normal.
+Ha: Los casos confirmados de latinoamerica no se ajustan a una distribución Normal.
+
+```{r b.a conf latam}
+shapiro.test(latam$Confirmados)
+```
+El test de Shapiro-Wilk nos muestra un valor p de 5.4e-06. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos confirmados de latinoamerica no se ajustan a una distribución Normal.
+
+###Prueba con casos recuperados de latinoamerica
+
+Ho: Los casos recuperados de latinoamerica se ajustan a una distribucion Normal.
+Ha: Los casos recuperados de latinoamerica no se ajustan a una distribución Normal.
+
+```{r b.a rec latam}
+shapiro.test(latam$Recuperados)
+```
+
+El test de Shapiro-Wilk nos muestra un valor p de 2.3e-05. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos recuperados de latinoamerica no se ajustan a una distribución Normal.
+
+###Prueba con casos de muertes de latinoamerica
+
+Ho: Los casos de muertes de latinoamerica se ajustan a una distribucion Normal.
+Ha: Los casos de muertes de latinoamerica no se ajustan a una distribución Normal.
+
+```{r b.a muertes latam}
+shapiro.test(latam$Muertes)
+```
+
+El test de Shapiro-Wilk nos muestra un valor p de 1.5e-06. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos de muertes de latinoamerica no se ajustan a una distribución Normal.
+
+Se quiere verificar si los datos de las potencias juntas se ajustan a una distribución Normal.
+
+###Prueba con casos confirmados de potencias
+
+Ho: Los casos confirmados de potencias se ajustan a una distribucion Normal.
+Ha: Los casos confirmados de potencias no se ajustan a una distribución Normal.
+
+```{r b.a conf potencias}
+shapiro.test(potencias$Confirmados)
+```
+
+El test de Shapiro-Wilk nos muestra un valor p de 1.5e-08. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos confirmados de potencias no se ajustan a una distribución Normal.
+
+###Prueba con casos recuperados de potencias
+
+Ho: Los casos recuperados de potencias se ajustan a una distribucion Normal.
+Ha: Los casos recuperados de potencias no se ajustan a una distribución Normal.
+
+```{r b.a rec potencias}
+shapiro.test(potencias$Recuperados)
+```
+
+El test de Shapiro-Wilk nos muestra un valor p de 5.4e-12. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos recuperados de potencias no se ajustan a una distribución Normal.
+
+###Prueba con casos de muertes de potencias
+
+Ho: Los casos de muertes de potencias se ajustan a una distribucion Normal.
+Ha: Los casos de muertes de potencias no se ajustan a una distribución Normal.
+
+```{r b.a muertes potencias}
+shapiro.test(potencias$Muertes)
+```
+
+El test de Shapiro-Wilk nos muestra un valor p de 5.03e-12. Como el valor p es menor a 0.05 se rechaza Ho, por lo tanto, existe evidencia estadística para afirmar que los casos de muertes de potencias no se ajustan a una distribución Normal.
+
+##Intervalos de Confianza
+
+*****llenar seccion*****
+
+##Pruebas de Hipótesis
+
+*****llenar seccion*****
+
+##Tabla de contingencia
+
+Se quiere verificar si existe dependencia entre los casos confirmados, recuperados y muertos por covid-19 y los años.
+
+Ho: Los casos confirmados, recuperados y muertos son independientes del año.
+Ha: Los casos confirmados, recuperados y muertos no son independientes del año.
+
+```{r tabla contingencia}
+
+anio<-c("2020", "2021")
+conf<-c(21017692,16168700)
+rec<-c(11144450,1049619789)
+muertos<-c(387406,254292152)
+tipo<-c("Confirmados", "Recuperados", "Muertos")
+
+tabla.cont<-cbind(conf,rec,muertos)
+rownames(tabla.cont)<- anio
+colnames(tabla.cont)<- tipo
+
+tabla.cont
+```
+
+Tabla de proporción con marginales
+```{r tabla prop marginales}
+tabla.prop<- round(prop.table(tabla.cont),3)
+#Añadiendo marginales
+addmargins(tabla.prop)
+
+```
+
+Prueba de Ji cuadrado para contraste de independencia
+```{r prueba contraste}
+chisq.test(tabla.cont)
+```
+Debido a que el valor p es 2.2e-16 y, por lo tanto, menor a 0.05, se rechaza Ho. Existe evidencia estadística de que los casos confirmados, recuperados y muertos no son independientes de los años.
+
+##Regresión lineal
+
+Se quiere comprobar si existe un buen modelo lineal entre los casos muertos y recuperados. Es decir, si los casos muertos explican a los recuperados.
+
+```{r regresion}
+regresion<- lm(datos$Recuperados~datos$Muertes)
+summary(regresion)
+
+```
+La ecuación para el modelo de regresión es Y = Bo + Bi(X).
+En este caso, Y: Casos recuperados ; X: Casos de muertes
+La ecuación final es: Y = 4.019e+05 + 4.045e+00(X)
+
+El modelo explica en un 97% que los casos de muertes por covid-19 de todos los países explican los casos recuperados de covid-19 en los mismos países. Con valor p de 2.2e-16 y nivel de confianza del 95%
+
+###Grafico del modelo de regresión
+```{r grafico regresion}
+
+plot(datos$Muertes, datos$Recuperados, xlab = "Casos de muertes por covid-19", ylab = "Casos recuperados de covid-19", main = "Modelo de casos de muertes de covid-19 vs casos recuperados")
+abline(regresion, col="blue")
+```

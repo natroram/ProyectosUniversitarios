@@ -1,0 +1,13 @@
+Categoria, #correctas, #incorrectas, tiempoEvaluacion (segundos)
+Biologia,3,7,80
+Historia,7,3,18
+Biologia,4,6,29
+Biologia,4,6,12
+Geografia,6,4,31
+Literatura,10,0,20
+Literatura,0,10,27
+Historia,0,10,43
+Historia,9,1,168
+Geografia,1,9,18
+Biologia,0,10,12
+Biologia,2,8,23

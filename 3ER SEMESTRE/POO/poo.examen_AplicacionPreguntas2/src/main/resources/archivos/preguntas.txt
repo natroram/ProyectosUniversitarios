@@ -1,0 +1,41 @@
+﻿materia, texto, opcion1, opcion2, opcon3, opcion4, respuesta
+Geografia, El gran desierto de Gobi se ubica en..., America Central, Asia, África, Sudamérica, Asia
+Geografia, ¿En qué país se ubican las ruinas de Esparta?, Italia, Grecia, España, Mexico, Grecia
+Geografia, ¿Cuál de estos países no tiene acceso al Mar Mediterráneo?, Eslovenia, Serbia, Chipre, Egipto, Serbia
+Geografia, ¿Cuál es el rió más largo del mundo?, Amazonas, Nilo, Rio Amarillo, Yangtsé, Nilo
+Geografia, ¿Qué país es el segundo más grande del mundo en términos de población?, China, Rusia, India, Indonesia, India
+Geografia, ¿Cuál de estos países es bañado únicamente por un océano?, Gran Bretaña, Canadá, Estados Unidos, Rusia, Gran Bretaña
+Geografia, ¿Dónde desemboca el río Amazonas?, En el océano Atlántico, En el océano Pacífico, En el océano Índico, En el océano Ártico, En el océano Atlántico
+Geografia, ¿Cuántos océanos hay en la Tierra?, 11, 5, 7, 4, 5
+Geografia, ¿Cuál de estos países es el más grande en África?, Argelia, República Democrática del Congo, Tanzania, Namibia, Argelia
+Geografia, ¿Cuál es la parte más seca de la Tierra?, Améreica del Norte, América del Sur, La Antártida, Asia, La Antártida
+Biologia, Los ácidos nucleicos son polímeros de nucleótidos unidos mediante enlaces, Fosfodiéster, Peptídicos, Glucosídicos, Nucleósidos, Fosfodiéster
+Biologia, La cromatina es, El componente esencial del nucleolo, Cada una de las partes de un cromosoma, Fibras de ARN asociadas a proteínas, Fibras de ADN empaquetadas con histonas, Fibras de ADN empaquetadas con histonas
+Biologia, La glucosilación de lípidos y proteínas es una de las funciones que realiza el orgánulo celular denominado:, Retículo endoplasmático, Glucocálix, Aparato de Golgi, Glioxisoma, Aparato de Golgi
+Biologia, El oxígeno que se desprende durante la fotosíntesis procede de:, La molécula de agua, La molécula de CO2, La molécula de clorofila, La atmósfera, La molécula de agua
+Biologia, Las células del colénquima, Tienen paredes muy lignificadas y por eso están muertas, Pueden ser alargadas (fibras) o cortas (células pétreas), Presentan paredes celulósicas muy gruesas pero sin lignificación y por eso están vivas, Las dos primeras afirmaciones son correctas, Presentan paredes celulósicas muy gruesas pero sin lignificación y por eso están vivas
+Biologia, Las plaquetas de la sangre, Se originan por fragmentación de los megacariocitos, Intervienen en el mecanismo de coagulación de la sangre, Son más numerosas que los leucocitos y menos que los eritrocitos, Todas son correctas, Todas son correctas
+Biologia, El sistema nervioso central de todos los vertebrados está protegido por, La sustancia blanca, La sustancia gris, Las meninges, Las vesículas encefálicas,  Las meninges
+Biologia, Los discos intervertebrales y los meniscos están constituidos por, Tejido cartilaginoso fibroso, Tejido conjuntivo reticular, Tejido óseo esponjoso, Tejido cartilaginoso hialino, Tejido cartilaginoso fibroso
+Biologia, Los organismos incluidos en el reino Protoctistas, Son siempre heterótrofos, Son siempre eucariotas, Son siempre unicelulares, Son siempre procariotas, Son siempre eucariotas
+Biologia, Los aminoácidos son compuestos anfóteros porque:, Se ionizan como ácidos o como bases (dependiendo del pH del medio), Poseen actividad óptica, Tienen una parte polar y otra apolar, Poseen un radical que puede ser aromático o heterocíclico, Se ionizan como ácidos o como bases (dependiendo del pH del medio)
+Literatura, ¿Quién escribió 'La Ilíada'?, Marco Tulio Cicerón, Homero, Séneca, Heródoto, Homero
+Literatura, Autor de 'El arte de la guerra', Shī Jīng, Sun Tzu, Dào Dé Jing, Confucio, Sun Tzu
+Literatura, ¿Quién es el autor de la 'Divina comedia'?, Dante Alighieri, Petrarca, Giovanni Bocaccio, Maquiavelo, Dante Alighieri
+Literatura, Filosofo griego autor de 'La República', Sócrates, Democrates, Aritóteles, Platón, Platón
+Literatura, ¿Por qué El Principito decide abandonar su planeta?, Porque quería conocer la tierra, Porque estaba enfermo, Porque el Rey le ordena irse, Porque sentía que una rosa se aprovechaba de el, Porque sentía que una rosa se aprovechaba de el
+Literatura, ¿Quién escribió 'Utopía'?, John Locke, Tomás Moro, Thomas Hobbes, Thomas Fale, Tomás Moro
+Literatura, ¿Cuál de estos escritores españoles no tiene el Premio Nobel?, José Echegaray, Miguel Delibes, Vicente Aleixandre, Camilo José Cela, Miguel Delibes
+Literatura, ¿Cuál de estas obras no es de William Shakespeare?, Don Quijote de la Mancha, Julio César, El sueño de una noche de verano, Hamlet, Don Quijote de la Mancha
+Literatura, ¿A qué épica europea pertenece la obra "El cantar de Roldán"?, Alemana, Inglesa, Francesa, Española, Francesa
+Literatura, En que siglo nació Miguel de Cervantes, Siglo XVII, Siglo XVI, Siglo XIV, Siglo XV, Siglo XVI
+Historia, ¿En que año descubrió Colón América?, 1492, 1502, 1496, 1488, 1492
+Historia, ¿En que guerra participó Juana de Arco?, Primera cruzada, Guerras napoleónicas, La guerra de los 100 años, La guerra de los 30 años, La guerra de los 100 años
+Historia, ¿Cuál era la capital del Imperio Inca?, Cuzco, Quito, Machu Picchu, Lima, Cuzco
+Historia, ¿Cuándo se produjo principalmente el Siglo de Oro?, Siglo XVI, Siglo XVII, Siglo XV, Siglo XIV, Siglo XVI
+Historia, ¿Cómo se llamaba el padre de Alejandro Magno?, Ptolomeo I, Filipo II de Macedonia, Leonidas, Flipo I de Grecia, Filipo II de Macedonia
+Historia, ¿Quién fue el primer emperador romano?, Julio Cesar, Cesar Augusto, Nerón, Calígula, Cesar Augusto
+Historia, ¿Qué Rey encargó "Las Meninas"?, Felipe IV, Felipe III, Carlos III, Felipe II, Felipe IV
+Historia, ¿Cómo se llamaba el cañón alemán más famoso de la I Guerra Mundial?, Luftwaffe, Mackensen M-14, Gran Berta, Enola Gay, Gran Berta
+Historia, ¿En que país nació Adolf Hitler?, Austria, Suiza, Alemania, Polonia, Austria
+Historia, ¿Por qué condenó la Iglesia a Galileo Galilei?, Por decir que la tierra era redonda, Por negar la existencia de Dios, Por decir que la tierra giraba alrededor del Sol, Por decir que la tierra era el centro del universo, Por decir que la tierra giraba alrededor del Sol
